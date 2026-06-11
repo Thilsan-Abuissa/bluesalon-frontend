@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Salon — Qatar's Premier Luxury Fashion & Beauty Destination</title>
+    <meta name="description" content="Discover the finest in luxury fashion, beauty, jewellery and lifestyle. Qatar's premier luxury retail destination.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     SEARCH OVERLAY
+============================================================ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-container">
+        <div class="search-input-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+            </svg>
+            <input type="search" class="search-input" placeholder="Search brands, products, categories…" aria-label="Search">
+            <button class="search-close" onclick="toggleSearch()" aria-label="Close search">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="search-trending">
+            <h4>Trending Searches</h4>
+            <div class="search-tags">
+                <button class="search-tag">Valentino</button>
+                <button class="search-tag">Summer Dresses</button>
+                <button class="search-tag">Gold Jewellery</button>
+                <button class="search-tag">Perfumes</button>
+                <button class="search-tag">Designer Bags</button>
+                <button class="search-tag">New Arrivals</button>
+                <button class="search-tag">Charlotte Tilbury</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     SCROLL TO TOP
+============================================================ -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/>
+    </svg>
+</button>
+
+<!-- ============================================================
+     ANNOUNCEMENT BAR
+============================================================ -->
+<div class="announcement-bar" role="banner">
+    <div class="ann-slider" aria-live="polite">
+        <span class="ann-slide ann-slide--active">Complimentary Shipping on Orders Over QAR 500</span>
+        <span class="ann-slide">New Season Arrivals Now In Store</span>
+        <span class="ann-slide">Visit Us at Mall of Qatar &amp; Villaggio</span>
+        <span class="ann-slide">Exclusive Members Earn Double Points This Week</span>
+    </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header" id="siteHeader" role="banner">
+    <div class="header-inner">
+
+        <!-- Logo -->
+        <div class="header-logo">
+            <a href="/" aria-label="Blue Salon — Home">
+                <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" width="160" height="38">
+            </a>
+        </div>
+
+        <!-- Primary Navigation -->
+        <nav class="header-nav" role="navigation" aria-label="Main navigation">
+            <ul class="nav-list">
+                <li class="nav-item" data-mega="newin">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">New In</a>
+                </li>
+                <li class="nav-item" data-mega="women">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Women</a>
+                </li>
+                <li class="nav-item" data-mega="men">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Men</a>
+                </li>
+                <li class="nav-item" data-mega="beauty">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Beauty</a>
+                </li>
+                <li class="nav-item" data-mega="jewellery">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Jewellery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Kids</a>
+                </li>
+                <li class="nav-item" data-mega="brands">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link--sale">Sale</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <button class="action-btn" onclick="toggleSearch()" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+            </button>
+            <div class="header-lang" id="headerLang" role="navigation" aria-label="Language and region">
+                <button class="header-lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Select language and region">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+                </button>
+                <div class="lang-dropdown" role="dialog" aria-label="Select country and language">
+                    <ul class="lang-country-list">
+                        <li><button class="lang-country-btn" data-country="ae">
+                            <span class="lang-flag">🇦🇪</span> United Arab Emirates
+                        </button></li>
+                        <li><button class="lang-country-btn" data-country="sa">
+                            <span class="lang-flag">🇸🇦</span> Saudi Arabia
+                        </button></li>
+                        <li><button class="lang-country-btn" data-country="bh">
+                            <span class="lang-flag">🇧🇭</span> Bahrain
+                        </button></li>
+                        <li><button class="lang-country-btn" data-country="eg">
+                            <span class="lang-flag">🇪🇬</span> Egypt
+                        </button></li>
+                        <li><button class="lang-country-btn" data-country="kw">
+                            <span class="lang-flag">🇰🇼</span> Kuwait
+                        </button></li>
+                        <li><button class="lang-country-btn lang-country-btn--active" data-country="qa">
+                            <span class="lang-flag">🇶🇦</span> Qatar
+                        </button></li>
+                        <li><button class="lang-country-btn" data-country="om">
+                            <span class="lang-flag">🇴🇲</span> Oman
+                        </button></li>
+                    </ul>
+                    <div class="lang-toggle-row">
+                        <button class="lang-toggle-btn lang-toggle-btn--active" data-lang="en" aria-pressed="true">English</button>
+                        <button class="lang-toggle-btn" data-lang="ar" aria-pressed="false">العربية</button>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="action-btn" aria-label="My Account">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </a>
+            <a href="#" class="action-btn action-btn--cart" aria-label="Shopping Bag — 2 items">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+    </div><!-- /header-inner -->
+
+    <!-- ================================================================
+         FULL-WIDTH MEGA PANELS  (direct children of header)
+    ================================================================ -->
+
+    <!-- ── NEW IN ──────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-newin" role="region" aria-label="New In">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="newin-newarrivals">New Arrivals</button>
+                <button class="fw-tab" data-panel="newin-trending">Trending Now</button>
+            </div>
+            <div class="fw-mega-body">
+                <div class="fw-panel fw-panel--active" id="newin-newarrivals">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=200&q=80" alt="Clothing" loading="lazy"></div>
+                            <span>Clothing</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80" alt="Shoes" loading="lazy"></div>
+                            <span>Shoes &amp; Heels</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Bags" loading="lazy"></div>
+                            <span>Bags</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&q=80" alt="Beauty" loading="lazy"></div>
+                            <span>Beauty</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80" alt="Jewellery" loading="lazy"></div>
+                            <span>Jewellery</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=200&q=80" alt="Fragrance" loading="lazy"></div>
+                            <span>Fragrance</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="New Season" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">New Season</p>
+                                <p class="fw-edit-sub">Explore the latest arrivals</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="newin-trending">
+                    <div class="fw-links-grid">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Trending Now</h5>
+                            <ul>
+                                <li><a href="#">Resort 2025 Edit</a></li>
+                                <li><a href="#">Editor's Picks</a></li>
+                                <li><a href="#">Best Sellers</a></li>
+                                <li><a href="#">Staff Favourites</a></li>
+                                <li><a href="#">Gift Ideas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Trending" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Summer Edit</p>
+                                <p class="fw-edit-sub">Shop trending looks</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── WOMEN ────────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-women" role="region" aria-label="Women">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="women-clothing">Clothing</button>
+                <button class="fw-tab" data-panel="women-shoes">Shoes</button>
+                <button class="fw-tab" data-panel="women-bags">Bags</button>
+                <button class="fw-tab" data-panel="women-jewellery">Jewellery</button>
+                <button class="fw-tab" data-panel="women-accessories">Accessories</button>
+                <button class="fw-tab" data-panel="women-modest">Modest Wear</button>
+            </div>
+            <div class="fw-mega-body">
+
+                <!-- Clothing -->
+                <div class="fw-panel fw-panel--active" id="women-clothing">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=200&q=80" alt="Dresses" loading="lazy"></div>
+                            <span>Dresses</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4086?w=200&q=80" alt="Tops" loading="lazy"></div>
+                            <span>Tops &amp; Blouses</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=200&q=80" alt="Trousers" loading="lazy"></div>
+                            <span>Trousers &amp; Jeans</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=200&q=80" alt="Knitwear" loading="lazy"></div>
+                            <span>Knitwear</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=200&q=80" alt="Outerwear" loading="lazy"></div>
+                            <span>Outerwear &amp; Coats</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&q=80" alt="Suits" loading="lazy"></div>
+                            <span>Suits &amp; Co-ords</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=200&q=80" alt="Swimwear" loading="lazy"></div>
+                            <span>Swimwear</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All Clothing</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Women's Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Women's Edit</p>
+                                <p class="fw-edit-sub">The season's must-haves</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Shoes -->
+                <div class="fw-panel" id="women-shoes">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=200&q=80" alt="Heels" loading="lazy"></div>
+                            <span>Heels &amp; Pumps</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80" alt="Trainers" loading="lazy"></div>
+                            <span>Trainers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=200&q=80" alt="Flats" loading="lazy"></div>
+                            <span>Flats &amp; Loafers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=200&q=80" alt="Boots" loading="lazy"></div>
+                            <span>Boots</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?w=200&q=80" alt="Sandals" loading="lazy"></div>
+                            <span>Sandals &amp; Mules</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All Shoes</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" alt="Shoes Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Shoes &amp; Heels</p>
+                                <p class="fw-edit-sub">Step into luxury</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bags -->
+                <div class="fw-panel" id="women-bags">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Handbags" loading="lazy"></div>
+                            <span>Handbags</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&q=80" alt="Clutches" loading="lazy"></div>
+                            <span>Clutches &amp; Mini Bags</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=200&q=80" alt="Totes" loading="lazy"></div>
+                            <span>Totes &amp; Shoppers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=200&q=80" alt="Crossbody" loading="lazy"></div>
+                            <span>Crossbody Bags</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80" alt="Backpacks" loading="lazy"></div>
+                            <span>Backpacks</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All Bags</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Bags Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Bags &amp; Handbags</p>
+                                <p class="fw-edit-sub">The season's iconic pieces</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Jewellery -->
+                <div class="fw-panel" id="women-jewellery">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80" alt="Necklaces" loading="lazy"></div>
+                            <span>Necklaces</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=200&q=80" alt="Rings" loading="lazy"></div>
+                            <span>Rings</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1611085583191-a3b181a88552?w=200&q=80" alt="Earrings" loading="lazy"></div>
+                            <span>Earrings</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1573408301185-9519f94816f4?w=200&q=80" alt="Bracelets" loading="lazy"></div>
+                            <span>Bracelets &amp; Bangles</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=200&q=80" alt="Watches" loading="lazy"></div>
+                            <span>Watches</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All Jewellery</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Jewellery Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Fine Jewellery</p>
+                                <p class="fw-edit-sub">Crafted for the extraordinary</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="fw-panel" id="women-accessories">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&q=80" alt="Sunglasses" loading="lazy"></div>
+                            <span>Sunglasses</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=200&q=80" alt="Scarves" loading="lazy"></div>
+                            <span>Scarves &amp; Wraps</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80" alt="Belts" loading="lazy"></div>
+                            <span>Belts</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&q=80" alt="Hats" loading="lazy"></div>
+                            <span>Hats &amp; Hair</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Accessories Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Accessories</p>
+                                <p class="fw-edit-sub">The finishing touch</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Modest Wear -->
+                <div class="fw-panel" id="women-modest">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=200&q=80" alt="Abayas" loading="lazy"></div>
+                            <span>Abayas</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&q=80" alt="Modest Dresses" loading="lazy"></div>
+                            <span>Modest Dresses</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=200&q=80" alt="Maxi Skirts" loading="lazy"></div>
+                            <span>Maxi Skirts</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=200&q=80" alt="Cover-Ups" loading="lazy"></div>
+                            <span>Cover-Ups &amp; Kaftans</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Modest Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Modest Wear</p>
+                                <p class="fw-edit-sub">Elegance, reimagined</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div><!-- /fw-mega-body -->
+        </div>
+    </div>
+
+    <!-- ── MEN ──────────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-men" role="region" aria-label="Men">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="men-clothing">Clothing</button>
+                <button class="fw-tab" data-panel="men-shoes">Shoes</button>
+                <button class="fw-tab" data-panel="men-bags">Bags</button>
+                <button class="fw-tab" data-panel="men-accessories">Accessories</button>
+            </div>
+            <div class="fw-mega-body">
+                <div class="fw-panel fw-panel--active" id="men-clothing">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Suits" loading="lazy"></div>
+                            <span>Suits &amp; Blazers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4086?w=200&q=80" alt="Shirts" loading="lazy"></div>
+                            <span>Shirts &amp; Polos</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=200&q=80" alt="T-Shirts" loading="lazy"></div>
+                            <span>T-Shirts</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=200&q=80" alt="Trousers" loading="lazy"></div>
+                            <span>Trousers &amp; Jeans</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=200&q=80" alt="Knitwear" loading="lazy"></div>
+                            <span>Knitwear</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=200&q=80" alt="Outerwear" loading="lazy"></div>
+                            <span>Outerwear</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80" alt="Men's Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Men's Edit</p>
+                                <p class="fw-edit-sub">Refined. Confident. Curated.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="men-shoes">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Trainers" loading="lazy"></div>
+                            <span>Trainers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=200&q=80" alt="Oxford" loading="lazy"></div>
+                            <span>Oxford &amp; Derbies</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80" alt="Loafers" loading="lazy"></div>
+                            <span>Loafers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=200&q=80" alt="Boots" loading="lazy"></div>
+                            <span>Boots</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Men Shoes" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Men's Shoes</p>
+                                <p class="fw-edit-sub">Walk with confidence</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="men-bags">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80" alt="Backpacks" loading="lazy"></div>
+                            <span>Backpacks</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="Briefcases" loading="lazy"></div>
+                            <span>Briefcases</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=200&q=80" alt="Totes" loading="lazy"></div>
+                            <span>Totes &amp; Shoppers</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Men Bags" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Men's Bags</p>
+                                <p class="fw-edit-sub">Carry it in style</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="men-accessories">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=200&q=80" alt="Watches" loading="lazy"></div>
+                            <span>Watches</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&q=80" alt="Sunglasses" loading="lazy"></div>
+                            <span>Sunglasses</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80" alt="Belts" loading="lazy"></div>
+                            <span>Belts &amp; Wallets</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Men Accessories" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Men's Accessories</p>
+                                <p class="fw-edit-sub">The details that define you</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── BEAUTY ───────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-beauty" role="region" aria-label="Beauty">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="beauty-skincare">Skincare</button>
+                <button class="fw-tab" data-panel="beauty-makeup">Make Up</button>
+                <button class="fw-tab" data-panel="beauty-fragrance">Fragrance</button>
+                <button class="fw-tab" data-panel="beauty-hairbody">Hair &amp; Body</button>
+            </div>
+            <div class="fw-mega-body">
+                <div class="fw-panel fw-panel--active" id="beauty-skincare">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80" alt="Moisturisers" loading="lazy"></div>
+                            <span>Moisturisers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=200&q=80" alt="Serums" loading="lazy"></div>
+                            <span>Serums &amp; Treatments</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=200&q=80" alt="Cleansers" loading="lazy"></div>
+                            <span>Cleansers</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&q=80" alt="Eye Care" loading="lazy"></div>
+                            <span>Eye Care</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=200&q=80" alt="Sun Protection" loading="lazy"></div>
+                            <span>Sun Protection</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile fw-cat-tile--all">
+                            <div class="fw-cat-img fw-cat-img--all">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                            </div>
+                            <span>View All Skincare</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80" alt="Skincare Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Skincare</p>
+                                <p class="fw-edit-sub">Science meets luxury</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="beauty-makeup">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1631214499682-c6ecccef4b5e?w=200&q=80" alt="Foundation" loading="lazy"></div>
+                            <span>Foundation</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&q=80" alt="Lips" loading="lazy"></div>
+                            <span>Lips</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=200&q=80" alt="Eyes" loading="lazy"></div>
+                            <span>Eyes</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80" alt="Face" loading="lazy"></div>
+                            <span>Face &amp; Blush</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&q=80" alt="Makeup Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Make Up</p>
+                                <p class="fw-edit-sub">Define your beauty</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="beauty-fragrance">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=200&q=80" alt="Women Fragrance" loading="lazy"></div>
+                            <span>Women's Fragrance</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1600612253971-32a9ab0e6d3f?w=200&q=80" alt="Men Fragrance" loading="lazy"></div>
+                            <span>Men's Fragrance</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=200&q=80" alt="Candles" loading="lazy"></div>
+                            <span>Candles &amp; Home</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1602928321679-560bb453f190?w=200&q=80" alt="Gift Sets" loading="lazy"></div>
+                            <span>Gift Sets</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=600&q=80" alt="Fragrance Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Fine Fragrance</p>
+                                <p class="fw-edit-sub">Your signature scent awaits</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="beauty-hairbody">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1526413425852-fe4b3bb29628?w=200&q=80" alt="Hair Care" loading="lazy"></div>
+                            <span>Hair Care</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80" alt="Body" loading="lazy"></div>
+                            <span>Body &amp; Bath</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&q=80" alt="Nail" loading="lazy"></div>
+                            <span>Nail Care</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1526413425852-fe4b3bb29628?w=600&q=80" alt="Hair Body Edit" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Hair &amp; Body</p>
+                                <p class="fw-edit-sub">Indulge in luxury</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── JEWELLERY ─────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-jewellery" role="region" aria-label="Jewellery">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="jwl-finejewellery">Fine Jewellery</button>
+                <button class="fw-tab" data-panel="jwl-watches">Watches</button>
+                <button class="fw-tab" data-panel="jwl-brands">Brands</button>
+            </div>
+            <div class="fw-mega-body">
+                <div class="fw-panel fw-panel--active" id="jwl-finejewellery">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80" alt="Necklaces" loading="lazy"></div>
+                            <span>Necklaces</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=200&q=80" alt="Rings" loading="lazy"></div>
+                            <span>Rings</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1611085583191-a3b181a88552?w=200&q=80" alt="Earrings" loading="lazy"></div>
+                            <span>Earrings</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1573408301185-9519f94816f4?w=200&q=80" alt="Bracelets" loading="lazy"></div>
+                            <span>Bracelets</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80" alt="Pendants" loading="lazy"></div>
+                            <span>Pendants</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Jewellery" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Fine Jewellery</p>
+                                <p class="fw-edit-sub">Crafted for eternity</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="jwl-watches">
+                    <div class="fw-cat-grid">
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=200&q=80" alt="Women Watches" loading="lazy"></div>
+                            <span>Women's Watches</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=200&q=80" alt="Men Watches" loading="lazy"></div>
+                            <span>Men's Watches</span>
+                        </a>
+                        <a href="#" class="fw-cat-tile">
+                            <div class="fw-cat-img"><img src="https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?w=200&q=80" alt="Smart Watches" loading="lazy"></div>
+                            <span>Luxury Sport</span>
+                        </a>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80" alt="Watches" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Timepieces</p>
+                                <p class="fw-edit-sub">Time, elevated</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="jwl-brands">
+                    <div class="fw-links-grid fw-links-grid--4">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Iconic Houses</h5>
+                            <ul>
+                                <li><a href="#">Cartier</a></li>
+                                <li><a href="#">Bulgari</a></li>
+                                <li><a href="#">Chopard</a></li>
+                                <li><a href="#">Van Cleef &amp; Arpels</a></li>
+                                <li><a href="#">Pomellato</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Contemporary</h5>
+                            <ul>
+                                <li><a href="#">David Yurman</a></li>
+                                <li><a href="#">Lagos</a></li>
+                                <li><a href="#">Monica Vinader</a></li>
+                                <li><a href="#">Suzanne Kalan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&q=80" alt="Jewellery Brands" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Jewellery Brands</p>
+                                <p class="fw-edit-sub">The world's finest houses</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── BRANDS ────────────────────────────────────────────────────── -->
+    <div class="fw-mega" id="mega-brands" role="region" aria-label="Brands">
+        <div class="fw-mega-inner">
+            <div class="fw-mega-tabs">
+                <button class="fw-tab fw-tab--active" data-panel="br-fashion">Fashion</button>
+                <button class="fw-tab" data-panel="br-beauty">Beauty</button>
+                <button class="fw-tab" data-panel="br-fragrance">Fragrance</button>
+                <button class="fw-tab" data-panel="br-jewellery">Jewellery</button>
+            </div>
+            <div class="fw-mega-body">
+                <div class="fw-panel fw-panel--active" id="br-fashion">
+                    <div class="fw-links-grid fw-links-grid--4">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Luxury Houses</h5>
+                            <ul>
+                                <li><a href="#">Valentino</a></li>
+                                <li><a href="#">Versace</a></li>
+                                <li><a href="#">Prada</a></li>
+                                <li><a href="#">Bottega Veneta</a></li>
+                                <li><a href="#">Stella McCartney</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Contemporary</h5>
+                            <ul>
+                                <li><a href="#">Jimmy Choo</a></li>
+                                <li><a href="#">Michael Kors</a></li>
+                                <li><a href="#">Ted Baker</a></li>
+                                <li><a href="#">Kate Spade</a></li>
+                                <li><a href="#">Coach</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Sport &amp; Street</h5>
+                            <ul>
+                                <li><a href="#">Moncler</a></li>
+                                <li><a href="#">Stone Island</a></li>
+                                <li><a href="#">Canada Goose</a></li>
+                                <li><a href="#">Golden Goose</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Browse</h5>
+                            <ul>
+                                <li><a href="#" class="view-all-link">All Fashion Brands →</a></li>
+                                <li><a href="#">A–Z Brand Index</a></li>
+                                <li><a href="#">New to Blue Salon</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Brands" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Our Brands</p>
+                                <p class="fw-edit-sub">The world's finest, in Qatar</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="br-beauty">
+                    <div class="fw-links-grid fw-links-grid--3">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Skincare &amp; Makeup</h5>
+                            <ul>
+                                <li><a href="#">Charlotte Tilbury</a></li>
+                                <li><a href="#">La Mer</a></li>
+                                <li><a href="#">Tom Ford Beauty</a></li>
+                                <li><a href="#">Sisley Paris</a></li>
+                                <li><a href="#">NARS</a></li>
+                                <li><a href="#">Dior Beauty</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Prestige</h5>
+                            <ul>
+                                <li><a href="#">Clé de Peau</a></li>
+                                <li><a href="#">La Prairie</a></li>
+                                <li><a href="#">Augustinus Bader</a></li>
+                                <li><a href="#">Sulwhasoo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80" alt="Beauty Brands" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Beauty Brands</p>
+                                <p class="fw-edit-sub">Discover prestige beauty</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="br-fragrance">
+                    <div class="fw-links-grid fw-links-grid--3">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Niche &amp; Artisan</h5>
+                            <ul>
+                                <li><a href="#">Maison Margiela</a></li>
+                                <li><a href="#">Creed</a></li>
+                                <li><a href="#">Le Labo</a></li>
+                                <li><a href="#">Byredo</a></li>
+                                <li><a href="#">Diptyque</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Heritage Houses</h5>
+                            <ul>
+                                <li><a href="#">Acqua di Parma</a></li>
+                                <li><a href="#">Penhaligon's</a></li>
+                                <li><a href="#">Floris London</a></li>
+                                <li><a href="#">Guerlain</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=600&q=80" alt="Fragrance Brands" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Fine Fragrance</p>
+                                <p class="fw-edit-sub">Your signature scent</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fw-panel" id="br-jewellery">
+                    <div class="fw-links-grid fw-links-grid--3">
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Iconic Houses</h5>
+                            <ul>
+                                <li><a href="#">Cartier</a></li>
+                                <li><a href="#">Bulgari</a></li>
+                                <li><a href="#">Chopard</a></li>
+                                <li><a href="#">Pomellato</a></li>
+                            </ul>
+                        </div>
+                        <div class="fw-links-col">
+                            <h5 class="fw-links-heading">Contemporary</h5>
+                            <ul>
+                                <li><a href="#">David Yurman</a></li>
+                                <li><a href="#">Monica Vinader</a></li>
+                                <li><a href="#">Suzanne Kalan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fw-editorial">
+                        <a href="#" class="fw-edit-card">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Jewellery Brands" loading="lazy">
+                            <div class="fw-edit-overlay">
+                                <p class="fw-edit-label">Jewellery Brands</p>
+                                <p class="fw-edit-sub">Rare. Beautiful. Yours.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="mobile-nav-inner">
+        <div class="mobile-nav-header">
+            <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" height="32">
+            <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="#">New In</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">Jewellery</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Brands</a></li>
+            <li><a href="#" class="mobile-sale-link">Sale</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <div class="lang-switcher">
+                <button class="lang-btn active">EN</button>
+                <span class="lang-divider">|</span>
+                <button class="lang-btn">AR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- ============================================================
+     HERO SLIDER
+============================================================ -->
+<div class="hs-container">
+<section class="hs" id="heroSlider" aria-label="Hero campaign slider">
+
+    <!-- ── Slides ─────────────────────────────────────── -->
+    <div class="hs-track" id="hsTrack">
+
+        <!-- Slide 1 — Women's Fashion -->
+        <div class="hs-slide hs-slide--active" data-slide="0" aria-hidden="false">
+            <div class="hs-bg">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1800&q=90"
+                     alt="Blue Salon — Women's Fashion"
+                     class="hs-bg-img" fetchpriority="high">
+            </div>
+            <div class="hs-panel" aria-hidden="true"></div>
+            <div class="hs-content">
+                <div class="hs-watermark" aria-hidden="true">B</div>
+                <div class="hs-text">
+                    <p class="hs-kicker">
+                        <span class="hs-kicker-line"></span>
+                        New Season 2025
+                    </p>
+                    <h1 class="hs-headline">Where Elegance<br>Meets Desire</h1>
+                    <p class="hs-body">Curated from the world's finest fashion houses,<br class="br-md">exclusively in Qatar.</p>
+                    <a href="#" class="hs-cta">
+                        Explore Women
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hs-badge" aria-hidden="true">
+                <span class="hs-badge-star">✦</span>
+                <span class="hs-badge-text">Luxury<br>In Every<br>Detail</span>
+            </div>
+        </div>
+
+        <!-- Slide 2 — Fine Jewellery -->
+        <div class="hs-slide" data-slide="1" aria-hidden="true">
+            <div class="hs-bg">
+                <img src="https://images.unsplash.com/photo-1573408301185-9519f94816f4?w=1800&q=90"
+                     alt="Blue Salon — Fine Jewellery"
+                     class="hs-bg-img" loading="lazy">
+            </div>
+            <div class="hs-panel" aria-hidden="true"></div>
+            <div class="hs-content">
+                <div class="hs-watermark" aria-hidden="true">B</div>
+                <div class="hs-text">
+                    <p class="hs-kicker">
+                        <span class="hs-kicker-line"></span>
+                        Fine Jewellery
+                    </p>
+                    <h1 class="hs-headline">Crafted for<br>the Extraordinary</h1>
+                    <p class="hs-body">Rare gems, precious metals, and artisan craft —<br class="br-md">jewellery that defines your legacy.</p>
+                    <a href="#" class="hs-cta">
+                        Discover Jewellery
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hs-badge" aria-hidden="true">
+                <span class="hs-badge-star">✦</span>
+                <span class="hs-badge-text">Curated<br>by<br>Experts</span>
+            </div>
+        </div>
+
+        <!-- Slide 3 — Men's Collection -->
+        <div class="hs-slide" data-slide="2" aria-hidden="true">
+            <div class="hs-bg">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1800&q=90"
+                     alt="Blue Salon — New Season"
+                     class="hs-bg-img" loading="lazy">
+            </div>
+            <div class="hs-panel" aria-hidden="true"></div>
+            <div class="hs-content">
+                <div class="hs-watermark" aria-hidden="true">B</div>
+                <div class="hs-text">
+                    <p class="hs-kicker">
+                        <span class="hs-kicker-line"></span>
+                        New Season
+                    </p>
+                    <h1 class="hs-headline">The Art of<br>Beautiful Living</h1>
+                    <p class="hs-body">World-class beauty, fashion and fragrance —<br class="br-md">all curated for you in Qatar.</p>
+                    <a href="#" class="hs-cta">
+                        Discover More
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hs-badge" aria-hidden="true">
+                <span class="hs-badge-star">✦</span>
+                <span class="hs-badge-text">Qatar's<br>Premier<br>Destination</span>
+            </div>
+        </div>
+
+
+    </div><!-- /hs-track -->
+
+    <!-- ── Navigation ─────────────────────────────────── -->
+    <div class="hs-nav" aria-label="Slider navigation">
+
+        <!-- Prev / Next -->
+        <button class="hs-arrow hs-arrow--prev" id="hsPrev" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+        </button>
+        <button class="hs-arrow hs-arrow--next" id="hsNext" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </button>
+
+        <!-- Counter + dots -->
+        <div class="hs-bottom">
+            <span class="hs-counter" id="hsCounter">01 / 03</span>
+            <div class="hs-dots" role="tablist" aria-label="Slide indicators">
+                <button class="hs-dot hs-dot--active" data-goto="0" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+                <button class="hs-dot" data-goto="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                <button class="hs-dot" data-goto="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+            </div>
+        </div>
+
+        <!-- Auto-play progress line -->
+        <div class="hs-progress" aria-hidden="true">
+            <div class="hs-progress-fill" id="hsProgressFill"></div>
+        </div>
+
+    </div><!-- /hs-nav -->
+
+</section>
+</div><!-- /hs-container -->
+
+<!-- ============================================================
+     SERVICES STRIP  (directly under hero)
+============================================================ -->
+<div class="services-strip-wrap">
+<div class="services-strip" role="list" aria-label="Our services">
+    <div class="service-item" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+        </div>
+        <div>
+            <p class="service-title">Premium Quality</p>
+            <p class="service-desc">Finest luxury materials</p>
+        </div>
+    </div>
+    <div class="service-item" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/><path stroke-linecap="round" stroke-linejoin="round" d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+        </div>
+        <div>
+            <p class="service-title">Timeless Style</p>
+            <p class="service-desc">Designed to inspire</p>
+        </div>
+    </div>
+    <div class="service-item" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+        </div>
+        <div>
+            <p class="service-title">Complimentary Shipping</p>
+            <p class="service-desc">On orders over QAR 500</p>
+        </div>
+    </div>
+    <div class="service-item" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+        </div>
+        <div>
+            <p class="service-title">Secure Payment</p>
+            <p class="service-desc">100% protected</p>
+        </div>
+    </div>
+</div>
+</div><!-- /services-strip-wrap -->
+
+<!-- ============================================================
+     SHOP BY CATEGORY
+============================================================ -->
+<section class="tc-section" aria-labelledby="tc-heading">
+    <div class="tc-grid">
+
+        <!-- Left — Women fashion editorial -->
+        <a href="#" class="tc-card tc-card--tall reveal" style="--delay:0s" aria-label="Shop Women">
+            <img src="assets/women.png" alt="Women's Fashion" loading="lazy">
+            <div class="tc-label-bar">Women Top</div>
+        </a>
+
+        <!-- Center — Heading + Featured Bags -->
+        <div class="tc-center">
+            <div class="tc-heading reveal" style="--delay:0.08s">
+                <span class="tc-eyebrow">Top Categories</span>
+                <h2 class="tc-title" id="tc-heading">I am Looking For Fashion</h2>
+                <span class="tc-rule" aria-hidden="true"></span>
+            </div>
+            <a href="#" class="tc-featured reveal" style="--delay:0.16s" aria-label="Shop Bags">
+                <img src="assets/bags.png" alt="Luxury Bags" loading="lazy">
+                <div class="tc-featured-cta">Shop Bags</div>
+            </a>
+        </div>
+
+        <!-- Right — two stacked product cards -->
+        <div class="tc-right">
+            <a href="#" class="tc-card reveal" style="--delay:0.24s" aria-label="Shop Belts">
+                <img src="assets/belts.png" alt="Belts" loading="lazy">
+                <div class="tc-label-bar">Belts</div>
+            </a>
+            <a href="#" class="tc-card reveal" style="--delay:0.32s" aria-label="Shop Shoes">
+                <img src="assets/shoe.png" alt="Shoes" loading="lazy">
+                <div class="tc-label-bar">Shoes</div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================
+     NEW ARRIVALS
+============================================================ -->
+<section class="section section--tinted" aria-labelledby="new-arrivals-heading">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <p class="section-label">Just In</p>
+                <h2 class="section-title" id="new-arrivals-heading">New <em>Arrivals</em></h2>
+            </div>
+            <a href="#" class="text-link">
+                View All
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+        </div>
+
+        <div class="products-grid">
+
+            <article class="product-card reveal" style="--delay:0.05s">
+                <a href="#" class="product-card-link" aria-label="Valentino Pleated Silk Midi Dress — QAR 8,950">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Valentino Pleated Silk Midi Dress" class="product-img" loading="lazy">
+                        <div class="product-actions" aria-label="Quick actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                            <button class="product-action-btn" aria-label="Quick View" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </button>
+                        </div>
+                        <span class="product-badge product-badge--new">New</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Valentino</p>
+                        <p class="product-name">Pleated Silk Midi Dress</p>
+                        <p class="product-price"><span class="currency">QAR </span>8,950</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="product-card reveal" style="--delay:0.1s">
+                <a href="#" class="product-card-link" aria-label="Bottega Veneta Intrecciato Mini Jodie Bag — QAR 12,400">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Bottega Veneta Intrecciato Mini Jodie" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                            <button class="product-action-btn" aria-label="Quick View" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Bottega Veneta</p>
+                        <p class="product-name">Intrecciato Mini Jodie Bag</p>
+                        <p class="product-price"><span class="currency">QAR </span>12,400</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="product-card reveal" style="--delay:0.15s">
+                <a href="#" class="product-card-link" aria-label="Cartier Santos Watch — QAR 32,000">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80" alt="Cartier Santos de Cartier Watch" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                            <button class="product-action-btn" aria-label="Quick View" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </button>
+                        </div>
+                        <span class="product-badge product-badge--new">New</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Cartier</p>
+                        <p class="product-name">Santos de Cartier Watch</p>
+                        <p class="product-price"><span class="currency">QAR </span>32,000</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="product-card reveal" style="--delay:0.2s">
+                <a href="#" class="product-card-link" aria-label="Jimmy Choo Crystal Pumps — QAR 5,600">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&q=80" alt="Jimmy Choo Crystal Embellished Pumps" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                            <button class="product-action-btn" aria-label="Quick View" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Jimmy Choo</p>
+                        <p class="product-name">Azia Crystal Embellished Pumps</p>
+                        <p class="product-price"><span class="currency">QAR </span>5,600</p>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     EDITORIAL CAMPAIGN
+============================================================ -->
+<section class="editorial" aria-label="Editorial campaign">
+    <div class="editorial-grid">
+        <div class="editorial-image-col">
+            <img
+                src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=960&q=85"
+                alt="Blue Salon Summer Campaign — Dressed for the Extraordinary"
+                class="editorial-img"
+                loading="lazy"
+            >
+        </div>
+        <div class="editorial-content-col">
+            <p class="editorial-kicker">The Season's Edit</p>
+            <h2 class="editorial-headline">
+                Dressed for the<br><em>Extraordinary</em>
+            </h2>
+            <p class="editorial-body">
+                This season, Blue Salon presents a curated collection that blends timeless elegance with contemporary vision. Each piece is chosen to elevate your story and define your presence.
+            </p>
+            <a href="#" class="btn btn--outline-light">
+                Discover the Edit
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FEATURED BRANDS
+============================================================ -->
+<section class="section" aria-labelledby="brands-heading">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <p class="section-label">Our Portfolio</p>
+                <h2 class="section-title" id="brands-heading">Featured <em>Brands</em></h2>
+            </div>
+            <a href="#" class="text-link">
+                All Brands
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+        </div>
+        <div class="brands-grid reveal">
+            <a href="#" class="brand-cell" aria-label="Valentino"><span class="brand-name">VALENTINO</span></a>
+            <a href="#" class="brand-cell" aria-label="Versace"><span class="brand-name">VERSACE</span></a>
+            <a href="#" class="brand-cell" aria-label="Prada"><span class="brand-name">PRADA</span></a>
+            <a href="#" class="brand-cell" aria-label="Jimmy Choo"><span class="brand-name">JIMMY CHOO</span></a>
+            <a href="#" class="brand-cell" aria-label="Cartier"><span class="brand-name">CARTIER</span></a>
+            <a href="#" class="brand-cell" aria-label="Bottega Veneta"><span class="brand-name">BOTTEGA<br>VENETA</span></a>
+            <a href="#" class="brand-cell" aria-label="Stella McCartney"><span class="brand-name">STELLA<br>McCARTNEY</span></a>
+            <a href="#" class="brand-cell" aria-label="Charlotte Tilbury"><span class="brand-name">CHARLOTTE<br>TILBURY</span></a>
+            <a href="#" class="brand-cell" aria-label="La Mer"><span class="brand-name">LA MER</span></a>
+            <a href="#" class="brand-cell" aria-label="Tom Ford"><span class="brand-name">TOM FORD</span></a>
+            <a href="#" class="brand-cell" aria-label="Creed"><span class="brand-name">CREED</span></a>
+            <a href="#" class="brand-cell" aria-label="Acqua di Parma"><span class="brand-name">ACQUA<br>DI PARMA</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TRENDING PRODUCTS
+============================================================ -->
+<section class="section section--tinted" aria-labelledby="trending-heading">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <p class="section-label">Curated for You</p>
+                <h2 class="section-title" id="trending-heading">Trending <em>Now</em></h2>
+            </div>
+            <a href="#" class="text-link">
+                View All
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+        </div>
+
+        <div class="trending-grid">
+
+            <article class="product-card product-card--hero reveal" style="--delay:0.05s">
+                <a href="#" class="product-card-link" aria-label="Cartier Love Diamond Necklace — QAR 18,500">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700&q=80" alt="Cartier Love Collection Diamond Necklace" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Cartier</p>
+                        <p class="product-name">Love Collection Diamond Necklace</p>
+                        <p class="product-price"><span class="currency">QAR </span>18,500</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="product-card reveal" style="--delay:0.1s">
+                <a href="#" class="product-card-link" aria-label="Creed Aventus 100ml — QAR 1,950">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=600&q=80" alt="Creed Aventus Eau de Parfum 100ml" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Creed</p>
+                        <p class="product-name">Aventus Eau de Parfum 100ml</p>
+                        <p class="product-price"><span class="currency">QAR </span>1,950</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="product-card reveal" style="--delay:0.15s">
+                <a href="#" class="product-card-link" aria-label="Charlotte Tilbury Magic Cream — QAR 485">
+                    <div class="product-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80" alt="Charlotte Tilbury Magic Cream 100ml" class="product-img" loading="lazy">
+                        <div class="product-actions">
+                            <button class="product-action-btn wishlist-btn" aria-label="Add to Wishlist" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-brand">Charlotte Tilbury</p>
+                        <p class="product-name">Magic Cream Moisturiser 100ml</p>
+                        <p class="product-price"><span class="currency">QAR </span>485</p>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer" role="contentinfo">
+
+    <!-- Store Locations -->
+    <div class="footer-stores">
+        <div class="container">
+            <div class="footer-stores-header">
+                <p class="section-label section-label--light">Visit Us</p>
+                <h3 class="footer-stores-title">Our <em>Stores</em></h3>
+            </div>
+            <div class="stores-grid">
+                <div class="store-card">
+                    <p class="store-name">Mall of Qatar</p>
+                    <p class="store-address">Level 1, Mall of Qatar<br>Al Rayyan, Qatar</p>
+                    <p class="store-hours">Sat–Thu: 10:00–22:00 &nbsp;·&nbsp; Fri: 14:00–22:00</p>
+                </div>
+                <div class="store-card">
+                    <p class="store-name">Villaggio Mall</p>
+                    <p class="store-address">Ground Floor, Villaggio Mall<br>Al Waab Street, Doha</p>
+                    <p class="store-hours">Sat–Thu: 10:00–22:00 &nbsp;·&nbsp; Fri: 14:00–22:00</p>
+                </div>
+                <div class="store-card">
+                    <p class="store-name">Doha Festival City</p>
+                    <p class="store-address">Level 1, Doha Festival City<br>Al Khor Highway, Qatar</p>
+                    <p class="store-hours">Sat–Thu: 10:00–22:00 &nbsp;·&nbsp; Fri: 14:00–22:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="newsletter-grid">
+                <div class="newsletter-copy">
+                    <h3 class="newsletter-heading">Stay in the <em>Loop</em></h3>
+                    <p class="newsletter-sub">Be the first to know about new arrivals, exclusive events, and curated edits.</p>
+                </div>
+                <div class="newsletter-form-wrap">
+                    <form class="newsletter-form" id="newsletterForm" novalidate>
+                        <input type="email" class="newsletter-input" placeholder="Your email address" aria-label="Email address for newsletter" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                    <p class="newsletter-legal">By subscribing you agree to our <a href="#">Privacy Policy</a>. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Footer Links -->
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-cols">
+
+                <!-- Brand column -->
+                <div class="footer-col footer-col--brand">
+                    <a href="/" aria-label="Blue Salon">
+                        <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" height="30" class="footer-logo">
+                    </a>
+                    <p class="footer-tagline">Qatar's premier destination for luxury fashion, beauty, jewellery, and lifestyle. Curating the world's finest since 1984.</p>
+                    <div class="social-links" role="list" aria-label="Social media links">
+                        <a href="#" class="social-link" aria-label="Blue Salon on Instagram" role="listitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Blue Salon on TikTok" role="listitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Blue Salon on Facebook" role="listitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Blue Salon on Pinterest" role="listitem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M8 12a4 4 0 108 0c0-2.21-1.79-4-4-4s-4 1.79-4 4zm4 0c0 1.1-.9 2-2 2M16 8v4a8 8 0 11-8-8"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Customer Care -->
+                <div class="footer-col">
+                    <h4 class="footer-col-heading">Customer Care</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                        <li><a href="#" class="footer-link">Size Guide</a></li>
+                        <li><a href="#" class="footer-link">Delivery &amp; Shipping</a></li>
+                        <li><a href="#" class="footer-link">Returns &amp; Exchanges</a></li>
+                        <li><a href="#" class="footer-link">Track Your Order</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-col">
+                    <h4 class="footer-col-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Personal Shopping</a></li>
+                        <li><a href="#" class="footer-link">Gift Cards</a></li>
+                        <li><a href="#" class="footer-link">Luxury Gift Wrapping</a></li>
+                        <li><a href="#" class="footer-link">Loyalty Programme</a></li>
+                        <li><a href="#" class="footer-link">Alterations &amp; Tailoring</a></li>
+                        <li><a href="#" class="footer-link">Concierge</a></li>
+                    </ul>
+                </div>
+
+                <!-- About -->
+                <div class="footer-col">
+                    <h4 class="footer-col-heading">Blue Salon</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">About Us</a></li>
+                        <li><a href="#" class="footer-link">Our Story</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#" class="footer-link">Press &amp; Media</a></li>
+                        <li><a href="#" class="footer-link">Sustainability</a></li>
+                        <li><a href="#" class="footer-link">Corporate Gifting</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-inner">
+                <p class="footer-copyright">© 2025 Blue Salon — Al Issa Group. All rights reserved. Qatar.</p>
+                <nav class="footer-legal-links" aria-label="Legal links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Sitemap</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
