@@ -672,7 +672,8 @@ input, button { outline-color: var(--blue); }
 }
 
 /* Giant watermark letter */
-.hs-watermark {
+.hs-watermark { display: none; }
+.hs-watermark--hidden {
   position: absolute;
   left: clamp(20px, 3vw, 40px);
   top: 50%;
@@ -1376,8 +1377,7 @@ input, button { outline-color: var(--blue); }
 ============================================================ */
 .brands-section {
   background: #fff;
-  overflow: hidden;
-  padding: 80px 0;
+  padding: 80px 0 40px;
 }
 .brands-header-wrap {
   max-width: 1536px;
@@ -1395,13 +1395,11 @@ input, button { outline-color: var(--blue); }
 }
 .brands-section-title em { font-style: italic; font-weight: 300; color: var(--blue); }
 .brands-marquee-wrap {
-  padding: 40px 0;
   overflow: hidden;
   background: #fff;
   max-width: 1536px;
   margin: 0 auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 20px 40px;
 }
 .brands-marquee {
   display: flex;
