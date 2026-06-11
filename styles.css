@@ -1325,7 +1325,7 @@ input, button { outline-color: var(--blue); }
 .tc-card {
   position: relative;
   overflow: hidden;
-  background: #f2f2f2;
+  background: #ebebeb;
   text-decoration: none;
   display: block;
 }
@@ -1401,10 +1401,10 @@ input, button { outline-color: var(--blue); }
   margin-bottom: 14px;
 }
 .tc-title {
-  font-family: var(--sans);
-  font-size: clamp(22px, 2.2vw, 34px);
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--serif);
+  font-size: clamp(26px, 2.6vw, 40px);
+  font-weight: 300;
+  line-height: 1.15;
   color: var(--navy);
 }
 .tc-rule {
@@ -1421,19 +1421,21 @@ input, button { outline-color: var(--blue); }
   flex: 1;
   position: relative;
   overflow: hidden;
-  background: #f2f2f2;
+  background: #e7e7e7;
   text-decoration: none;
   display: block;
 }
 .tc-featured img {
-  width: 100%;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
   height: calc(100% - 50px);
-  object-fit: contain;
-  object-position: center center;
+  width: auto;
   display: block;
   transition: transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94);
 }
-.tc-featured:hover img { transform: scale(1.05); }
+.tc-featured:hover img { transform: translateX(-50%) scale(1.05); }
 
 /* Black CTA button at bottom of featured */
 .tc-featured-cta {
