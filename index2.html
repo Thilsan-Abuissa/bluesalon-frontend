@@ -230,8 +230,10 @@
             transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .nav-item:hover .main-nav-link,
-        .main-nav-link:hover { color: var(--navy); }
-        .nav-item:hover .main-nav-link::after { transform: scaleX(1); }
+        .main-nav-link:hover,
+        .main-nav-link.active { color: var(--navy); }
+        .nav-item:hover .main-nav-link::after,
+        .main-nav-link.active::after { transform: scaleX(1); }
         .main-nav-link--sale { color: #b52828; }
         .main-nav-link--sale::after { background: #b52828; }
         .main-nav-link--sale:hover { color: #991f1f; }
@@ -2588,7 +2590,7 @@
                 </svg>
             </div>
             <div class="service-title">Personal Styling</div>
-            <p class="service-desc">One-to-one styling sessions with our expert team, in-store at Mall of Qatar or virtually.</p>
+            <p class="service-desc">One-to-one styling sessions with our expert team.</p>
         </div>
         <div class="service reveal">
             <div class="service-icon-wrap">
