@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Salon — Luxury Fashion & Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --grey-light: #f5f5f3;
+      --grey-mid: #e8e8e5;
+      --grey-dark: #6b6b6b;
+      --gold: #c8a96e;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Announcement Bar ── */
+    .announcement {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--grey-mid);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo img {
+      height: 28px;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--black);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .header-actions button:hover { color: var(--gold); }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+    }
+
+    .hero-content {
+      background: var(--grey-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 72px;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--grey-dark);
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--grey-dark);
+      max-width: 380px;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--black);
+      color: var(--black);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 40px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-outline:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .hero-image {
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Section Wrapper ── */
+    .section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 88px 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      line-height: 1.15;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--grey-dark);
+    }
+
+    /* ── Category Strip ── */
+    .categories {
+      background: var(--grey-light);
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .cat-card:hover img { transform: scale(1.04); }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+    }
+
+    .cat-label {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .cat-link {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .cat-link:hover { color: var(--gold); }
+
+    /* ── Products Grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      cursor: pointer;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--grey-light);
+      aspect-ratio: 3/4;
+      margin-bottom: 16px;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+    }
+
+    .product-wishlist {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--white);
+      border: none;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .product-card:hover .product-wishlist { opacity: 1; }
+
+    .product-add {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,10,0.88);
+      color: var(--white);
+      border: none;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 14px;
+      cursor: pointer;
+      transform: translateY(100%);
+      transition: transform 0.3s ease, background 0.2s;
+      width: 100%;
+    }
+
+    .product-add:hover { background: var(--gold); }
+    .product-card:hover .product-add { transform: translateY(0); }
+
+    .product-brand {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey-dark);
+      margin-bottom: 5px;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    /* ── Editorial Banner ── */
+    .editorial {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .editorial-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .editorial-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .editorial-panel:hover img { transform: scale(1.03); }
+
+    .editorial-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 40px;
+      background: linear-gradient(to top, rgba(0,0,0,0.58) 0%, transparent 60%);
+    }
+
+    .editorial-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .editorial-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    /* ── Brands ── */
+    .brands-bar {
+      border-top: 1px solid var(--grey-mid);
+      border-bottom: 1px solid var(--grey-mid);
+      padding: 40px 32px;
+    }
+
+    .brands-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-item {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--grey-dark);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .brand-item:hover { color: var(--black); }
+
+    /* ── Features Strip ── */
+    .features {
+      background: var(--black);
+      padding: 48px 32px;
+    }
+
+    .features-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      margin: 0 auto 14px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    .feature-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── Newsletter ── */
+    .newsletter {
+      background: var(--grey-light);
+      text-align: center;
+      padding: 88px 32px;
+    }
+
+    .newsletter-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .newsletter-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-dark);
+      margin-bottom: 36px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto;
+      border: 1px solid var(--black);
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      border: none;
+      background: var(--white);
+      padding: 16px 20px;
+      font-size: 13px;
+      font-family: var(--font-sans);
+      outline: none;
+      color: var(--black);
+    }
+
+    .newsletter-form input::placeholder { color: var(--grey-dark); }
+
+    .newsletter-form button {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 16px 28px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover { background: var(--gold); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
+      padding: 64px 32px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+
+    .footer-logo img { height: 22px; filter: brightness(0) invert(1); margin-bottom: 18px; }
+
+    .footer-about {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .footer-col-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul li a {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      font-weight: 300;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-socials a {
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+      display: flex;
+    }
+
+    .footer-socials a:hover { color: var(--gold); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-image { min-height: 480px; }
+      .hero-content { padding: 60px 40px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .hero-content { padding: 48px 24px; }
+      .editorial { grid-template-columns: 1fr; }
+      .brands-inner { flex-wrap: wrap; justify-content: center; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Announcement -->
+<div class="announcement">Complimentary shipping on orders over QAR 500 &nbsp;·&nbsp; New Arrivals Every Week</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" />
+    </a>
+
+    <nav>
+      <a href="#">New In</a>
+      <a href="#">Women</a>
+      <a href="#">Shoes</a>
+      <a href="#">Bags</a>
+      <a href="#">Beauty</a>
+      <a href="#">Brands</a>
+      <a href="#">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Search -->
+      <button aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+      </button>
+      <!-- Account -->
+      <button aria-label="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+      <!-- Wishlist -->
+      <button aria-label="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
+      <!-- Bag -->
+      <button aria-label="Shopping bag" style="position:relative;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#c8a96e;border-radius:50%;font-size:9px;font-weight:600;color:#fff;display:flex;align-items:center;justify-content:center;">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Summer Collection 2026</p>
+    <h1 class="hero-title">Dress with<br><em>intention.</em><br>Live with<br>elegance.</h1>
+    <p class="hero-desc">Curated pieces from the world's most coveted designers, brought to Qatar's most discerning clientele.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="#" class="btn-primary">Shop Now</a>
+      <a href="#" class="btn-outline">Explore Brands</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp" alt="Summer Collection" />
+  </div>
+</section>
+
+<!-- Categories -->
+<div class="categories">
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="assets/women.png" alt="Women" />
+      <div class="cat-overlay">
+        <span class="cat-label">Women</span>
+        <a href="#" class="cat-link">Shop Collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="assets/bags.png" alt="Bags" />
+      <div class="cat-overlay">
+        <span class="cat-label">Bags</span>
+        <a href="#" class="cat-link">Shop Collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="assets/shoe.png" alt="Shoes" />
+      <div class="cat-overlay">
+        <span class="cat-label">Shoes</span>
+        <a href="#" class="cat-link">Shop Collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="assets/belts.png" alt="Accessories" />
+      <div class="cat-overlay">
+        <span class="cat-label">Accessories</span>
+        <a href="#" class="cat-link">Shop Collection</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Arrivals -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">New <em>Arrivals</em></h2>
+    <a href="#" class="btn-outline">View All</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp" alt="Inara Top" />
+        <span class="product-badge">New</span>
+        <button class="product-wishlist" aria-label="Wishlist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="product-add">Add to Bag</button>
+      </div>
+      <p class="product-brand">Blue Salon</p>
+      <p class="product-name">Inara Top in Ice Green</p>
+      <p class="product-price">QAR 1,250</p>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp" alt="Auggie Short" />
+        <button class="product-wishlist" aria-label="Wishlist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="product-add">Add to Bag</button>
+      </div>
+      <p class="product-brand">Blue Salon</p>
+      <p class="product-name">Auggie Short in Dark Olive</p>
+      <p class="product-price">QAR 890</p>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp" alt="Emma Tote Mini" />
+        <span class="product-badge">Bestseller</span>
+        <button class="product-wishlist" aria-label="Wishlist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="product-add">Add to Bag</button>
+      </div>
+      <p class="product-brand">Blue Salon</p>
+      <p class="product-name">Emma Tote Mini in Ruby Multi</p>
+      <p class="product-price">QAR 2,100</p>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp" alt="Marlene Pump" />
+        <button class="product-wishlist" aria-label="Wishlist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="product-add">Add to Bag</button>
+      </div>
+      <p class="product-brand">Blue Salon</p>
+      <p class="product-name">Marlene Pump 50 in Taupe</p>
+      <p class="product-price">QAR 1,650</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Editorial -->
+<div style="max-width:1320px;margin:0 auto;padding:0 32px 88px;">
+  <div class="editorial">
+    <div class="editorial-panel">
+      <img src="assets/products.png" alt="Shop the Look" />
+      <div class="editorial-text">
+        <p class="editorial-eyebrow">Shop the Look</p>
+        <h3 class="editorial-title">Effortless<br>Summer Style</h3>
+        <a href="#" class="btn-primary">Explore</a>
+      </div>
+    </div>
+    <div class="editorial-panel">
+      <img src="assets/setsi.png" alt="New Season" />
+      <div class="editorial-text">
+        <p class="editorial-eyebrow">New Season</p>
+        <h3 class="editorial-title">Power Dressing<br>Redefined</h3>
+        <a href="#" class="btn-primary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Brands -->
+<div class="brands-bar">
+  <div class="brands-inner">
+    <span class="brand-item">Valentino</span>
+    <span class="brand-item">Zimmermann</span>
+    <span class="brand-item">The Row</span>
+    <span class="brand-item">Totême</span>
+    <span class="brand-item">Bottega Veneta</span>
+    <span class="brand-item">Alaïa</span>
+    <span class="brand-item">Loewe</span>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="features-inner">
+    <div>
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <p class="feature-title">Free Shipping</p>
+      <p class="feature-desc">On all orders over QAR 500</p>
+    </div>
+    <div>
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <p class="feature-title">In-Store Pickup</p>
+      <p class="feature-desc">Available at Doha & Lusail boutiques</p>
+    </div>
+    <div>
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </div>
+      <p class="feature-title">Easy Returns</p>
+      <p class="feature-desc">30-day hassle-free return policy</p>
+    </div>
+    <div>
+      <div class="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <p class="feature-title">Authenticity Guarantee</p>
+      <p class="feature-desc">100% genuine luxury items</p>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <p class="newsletter-eyebrow">Stay in the Know</p>
+  <h2 class="newsletter-title">Join the Blue Salon Circle</h2>
+  <p class="newsletter-sub">Be the first to hear about new arrivals, exclusive events, and private sales.</p>
+  <form class="newsletter-form" onsubmit="return false;">
+    <input type="email" placeholder="Your email address" />
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" />
+        </div>
+        <p class="footer-about">Qatar's premier destination for luxury fashion, beauty, and lifestyle — curated with an unwavering eye for quality and elegance.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Shop</p>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Shoes</a></li>
+          <li><a href="#">Bags</a></li>
+          <li><a href="#">Beauty</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Help</p>
+        <ul>
+          <li><a href="#">Orders & Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Company</p>
+        <ul>
+          <li><a href="#">About Blue Salon</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Blue Salon. All rights reserved.</p>
+      <div class="footer-socials">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="#" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="#" aria-label="Pinterest">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.62-.31-1.54c0-1.45.84-2.53 1.88-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.53 1.88 1.84 0 3.07-2.35 3.07-5.14 0-2.12-1.43-3.71-4.01-3.71-2.92 0-4.74 2.18-4.74 4.61 0 .84.25 1.43.63 1.89.18.21.2.3.13.54-.04.17-.15.58-.18.74-.06.24-.25.32-.46.23-1.29-.53-1.9-1.95-1.9-3.55 0-2.63 2.22-5.8 6.6-5.8 3.54 0 5.87 2.56 5.87 5.31 0 3.64-2.02 6.38-4.99 6.38-.99 0-1.93-.54-2.25-1.15l-.62 2.38c-.22.86-.83 1.93-1.24 2.59.93.29 1.92.44 2.94.44 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
