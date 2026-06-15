@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Salon — Qatar's Luxury Fashion Destination</title>
+    <meta name="description" content="An unparalleled edit of the world's finest fashion, jewellery and beauty. Qatar's most trusted luxury destination.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─── TOKENS ───────────────────────────────────────── */
+        :root {
+            --navy:      #003876;
+            --navy-lt:   #0a4d9e;
+            --navy-dk:   #002558;
+            --white:     #ffffff;
+            --warm:      #faf8f5;
+            --cream:     #f4f1eb;
+            --linen:     #ede9e0;
+            --fog:       #e8e4dc;
+            --ash:       #d4cfc6;
+            --mid:       #b5b0a7;
+            --muted:     #888078;
+            --text:      #1c1916;
+            --text-lt:   #4a4540;
+            --rule:      #e5e1d9;
+            --ff-serif:  'Cormorant Garamond', Georgia, serif;
+            --ff-sans:   'Jost', system-ui, sans-serif;
+        }
+
+        /* ─── RESET ────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            background: var(--white);
+            color: var(--text);
+            font-family: var(--ff-sans);
+            font-weight: 300;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        button { cursor: pointer; border: none; background: none; font: inherit; }
+        ul { list-style: none; }
+
+        /* ─── SCROLL PROGRESS ──────────────────────────────── */
+        .scroll-bar {
+            position: fixed; top: 0; left: 0;
+            height: 2px; width: 0%;
+            background: var(--navy);
+            z-index: 9999;
+            transition: width 0.08s linear;
+        }
+
+        /* ─── HEADER ───────────────────────────────────────── */
+        .site-header {
+            position: sticky; top: 0; left: 0; right: 0;
+            z-index: 800;
+            background: var(--white);
+            transition: box-shadow 0.3s;
+        }
+        /* .site-header.raised { box-shadow: 0 2px 20px rgba(0,56,118,0.06); } */
+        .header-inner {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 72px;
+        }
+        /* ── Inline search bar (left) ── */
+        .header-search {
+            display: flex; align-items: center; gap: 9px;
+            padding: 0 0 6px 0; height: 38px;
+            max-width: 240px;
+            border-bottom: 1px solid var(--ash);
+            transition: border-color 0.25s;
+        }
+        .header-search:focus-within {
+            border-bottom-color: var(--text);
+        }
+        .header-search svg {
+            width: 14px; height: 14px; stroke-width: 1.5;
+            color: var(--muted); flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .header-search:focus-within svg { color: var(--text); }
+        .header-search input {
+            flex: 1; border: none; outline: none;
+            background: transparent;
+            font-family: var(--ff-sans); font-size: 0.75rem;
+            color: var(--text); font-weight: 300;
+            letter-spacing: 0.06em;
+            width: 180px;
+        }
+        .header-search input::placeholder {
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+        .header-logo {
+            text-align: center;
+        }
+        .header-logo img { height: 48px; width: auto; display: inline-block; }
+        .header-actions {
+            display: flex; align-items: center; gap: 4px;
+            justify-content: flex-end;
+        }
+        /* Language switcher */
+        .lang-switcher {
+            position: relative;
+        }
+        .lang-btn {
+            display: flex; align-items: center; gap: 5px;
+            height: 38px; padding: 0 8px;
+            color: var(--text-lt); cursor: pointer;
+            font-family: var(--ff-sans); font-size: 0.7rem;
+            letter-spacing: 0.08em; font-weight: 400;
+            background: none; border: none;
+            transition: color 0.2s;
+        }
+        .lang-btn:hover { color: var(--navy); }
+        .lang-btn svg { width: 16px; height: 16px; stroke-width: 1.4; flex-shrink: 0; }
+        .lang-btn .lang-chevron { width: 10px; height: 10px; stroke-width: 2; transition: transform 0.2s; }
+        .lang-switcher.open .lang-chevron { transform: rotate(180deg); }
+        .lang-drop {
+            position: absolute; top: calc(100% + 6px); right: 0;
+            background: var(--white);
+            border: 1px solid var(--rule);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+            min-width: 130px;
+            opacity: 0; visibility: hidden; transform: translateY(-4px);
+            transition: opacity 0.2s, transform 0.2s, visibility 0s linear 0.2s;
+            z-index: 900;
+        }
+        .lang-switcher.open .lang-drop {
+            opacity: 1; visibility: visible; transform: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .lang-option {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 16px;
+            font-family: var(--ff-sans); font-size: 0.72rem;
+            color: var(--text-lt); cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: background 0.15s, color 0.15s;
+        }
+        .lang-option:hover { background: var(--warm); color: var(--navy); }
+        .lang-option.active { color: var(--navy); font-weight: 500; }
+        .lang-option .lang-flag { font-size: 1rem; line-height: 1; }
+        .h-btn {
+            width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-lt);
+            border-radius: 0;
+            transition: color 0.2s, background 0.2s;
+            position: relative;
+        }
+        .h-btn:hover { color: var(--navy); background: var(--warm); }
+        .h-btn svg { width: 18px; height: 18px; stroke-width: 1.5; }
+        .cart-pip {
+            position: absolute; top: 6px; right: 6px;
+            width: 15px; height: 15px;
+            background: var(--navy);
+            border-radius: 50%;
+            font-size: 0.58rem; font-weight: 500;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            line-height: 1;
+        }
+        .h-btn--text {
+            padding: 0 12px; width: auto;
+            font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--navy); font-weight: 400;
+            border: 1px solid var(--navy);
+            height: 32px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .h-btn--text:hover { background: var(--navy); color: #fff; }
+        .mobile-ham {
+            display: none;
+            flex-direction: column; gap: 5px;
+            padding: 8px; cursor: pointer;
+        }
+        .mobile-ham span {
+            display: block; width: 22px; height: 1.5px;
+            background: var(--text);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* ─── MAIN NAV BAR ─────────────────────────────────── */
+        .main-nav {
+            background: var(--white);
+            position: sticky; top: 72px; z-index: 799;
+        }
+        .main-nav-inner {
+            max-width: 1440px; margin: 0 auto;
+            padding: 0 40px;
+            display: flex; align-items: center;
+            justify-content: center; gap: 0;
+            position: relative;
+        }
+        /* Each nav item wraps link + mega panel */
+        .nav-item {
+            position: static;
+        }
+        .main-nav-link {
+            display: inline-block;
+            padding: 14px 22px;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-lt);
+            font-weight: 400;
+            position: relative;
+            transition: color 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .main-nav-link::after {
+            content: '';
+            position: absolute; bottom: 0; left: 22px; right: 22px;
+            height: 2px; background: var(--navy);
+            transform: scaleX(0);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-item:hover .main-nav-link,
+        .main-nav-link:hover { color: var(--navy); }
+        .nav-item:hover .main-nav-link::after { transform: scaleX(1); }
+        .main-nav-link--sale { color: #b52828; }
+        .main-nav-link--sale::after { background: #b52828; }
+        .main-nav-link--sale:hover { color: #991f1f; }
+
+        /* ─── MEGA MENU — 3 LEVEL ───────────────────────────── */
+        .mega {
+            position: fixed;
+            top: 118px;
+            left: 0; right: 0;
+            background: var(--white);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+            z-index: 798;
+            opacity: 0; visibility: hidden;
+            transform: translateY(-5px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+        }
+        .mega.open {
+            opacity: 1; visibility: visible;
+            transform: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        /* 3-column wrapper */
+        .mega-3col {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; height: 380px;
+        }
+        /* ── Col 1: Level-2 sub-nav ── */
+        .mega-subnav {
+            width: 200px; flex-shrink: 0;
+            background: #f8f7f5;
+            border-right: 1px solid #ffffff;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        .mega-subnav-head {
+            font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--navy); padding: 8px 20px 14px; font-weight: 500;
+            border-bottom: 1px solid var(--rule); margin-bottom: 8px;
+        }
+        .mega-sublink {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 0.8rem; color: var(--text-lt); font-weight: 300;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            transition: color 0.15s, background 0.15s, border-color 0.15s;
+            text-decoration: none;
+        }
+        .mega-sublink svg { width: 11px; height: 11px; stroke-width: 2;
+            opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
+        .mega-sublink:hover,
+        .mega-sublink.active {
+            color: var(--navy); background: var(--white);
+            border-left-color: var(--navy);
+        }
+        .mega-sublink.active svg,
+        .mega-sublink:hover svg { opacity: 1; }
+        /* ── Col 2: Level-3 item panels ── */
+        .mega-panels {
+            flex: 1; overflow: hidden;
+            padding: 24px 28px;
+        }
+        .mega-panel {
+            display: none;
+            height: 100%;
+        }
+        .mega-panel.active { display: block; }
+        .mega-panel-head {
+            font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
+            color: var(--navy); margin-bottom: 18px; font-weight: 400;
+        }
+        .mega-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px 6px;
+        }
+        .mega-tile {
+            display: flex; align-items: center; gap: 11px;
+            padding: 9px 10px; border-radius: 3px;
+            transition: background 0.15s, transform 0.2s ease, opacity 0.2s ease; text-decoration: none;
+        }
+        .mega-tile:hover { background: none; transform: translateX(4px); opacity: 0.8; }
+        .mega-thumb {
+            width: 44px; height: 44px; border-radius: 50%;
+            overflow: hidden; flex-shrink: 0;
+            border: 1.5px solid var(--rule); background: var(--white);
+        }
+        .mega-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .mega-thumb-icon {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--mid);
+        }
+        .mega-thumb-icon svg { width: 17px; height: 17px; stroke-width: 1.3; }
+        .mega-viewall {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 14px;
+            font-family: var(--ff-sans); font-size: 10.5px;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--navy); text-decoration: none; font-weight: 500;
+            border-bottom: 1px solid var(--navy); padding-bottom: 1px;
+            transition: gap 0.2s, opacity 0.2s;
+        }
+        .mega-viewall:hover { gap: 11px; opacity: 0.7; }
+        .mega-viewall svg { width: 11px; height: 11px; stroke-width: 2; flex-shrink: 0; }
+        .mega-tile-name {
+            font-size: 0.78rem; color: var(--text);
+            line-height: 1.3; font-weight: 300;
+        }
+        .mega-tile:hover .mega-tile-name { color: var(--navy); }
+        /* ── Col 3: Feature image ── */
+        .mega-feat-col {
+            width: 230px; flex-shrink: 0;
+            border-left: 1px solid var(--rule);
+            padding: 24px 24px;
+            display: flex; flex-direction: column;
+        }
+        .mega-feat-img {
+            flex: 1; overflow: hidden; min-height: 0;
+        }
+        .mega-feat-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .mega-feat-img:hover img { transform: scale(1.04); }
+        .mega-feat-info { padding-top: 12px; }
+        .mega-feat-tag {
+            font-size: 0.58rem; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--navy); margin-bottom: 4px;
+        }
+        .mega-feat-title {
+            font-family: var(--ff-serif); font-size: 0.95rem;
+            font-weight: 300; color: var(--text); line-height: 1.3;
+        }
+
+        /* ─── SEARCH ───────────────────────────────────────── */
+        .search-sheet {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--rule);
+            z-index: 850;
+            padding: 24px 40px;
+            transform: translateY(-110%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0,56,118,0.08);
+        }
+        .search-sheet.open { transform: none; }
+        .search-row {
+            max-width: 640px; margin: 0 auto;
+            display: flex; align-items: center; gap: 16px;
+            border-bottom: 1.5px solid var(--navy);
+            padding-bottom: 12px;
+        }
+        .search-row svg { color: var(--navy); flex-shrink: 0; }
+        .search-field {
+            flex: 1; background: transparent; border: none; outline: none;
+            font-family: var(--ff-serif); font-size: 1.6rem; font-weight: 300;
+            color: var(--text); letter-spacing: 0.02em;
+        }
+        .search-field::placeholder { color: var(--mid); }
+        .search-close {
+            color: var(--muted); transition: color 0.2s; flex-shrink: 0;
+        }
+        .search-close:hover { color: var(--navy); }
+        .search-close svg { width: 20px; height: 20px; }
+        .search-pills {
+            max-width: 640px; margin: 16px auto 0;
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .search-pill {
+            padding: 6px 16px;
+            border: 1px solid var(--rule);
+            font-size: 0.7rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--muted);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .search-pill:hover { border-color: var(--navy); color: var(--navy); }
+
+        /* ─── MOBILE NAV ───────────────────────────────────── */
+        .mobile-nav {
+            position: fixed; top: 0; right: 0;
+            width: min(360px, 92vw); height: 100vh;
+            background: var(--white);
+            border-left: 1px solid var(--rule);
+            z-index: 900;
+            transform: translateX(100%);
+            transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+        .mobile-nav.open { transform: none; }
+        .nav-scrim {
+            position: fixed; inset: 0; background: rgba(28,25,22,0.35);
+            z-index: 890; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .nav-scrim.open { opacity: 1; visibility: visible; }
+        .mnav-head {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 28px; border-bottom: 1px solid var(--rule);
+        }
+        .mnav-head img { height: 28px; }
+        .mnav-close svg { width: 20px; height: 20px; stroke-width: 1.5; color: var(--muted); }
+        .mnav-links { padding: 12px 0; }
+        .mnav-links a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 28px;
+            font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--text-lt); border-bottom: 1px solid var(--rule);
+            transition: color 0.2s, background 0.2s;
+        }
+        .mnav-links a:hover { color: var(--navy); background: var(--warm); }
+        .mnav-links a.sale { color: #b52828; }
+        .mnav-foot {
+            padding: 28px;
+            display: flex; gap: 12px;
+        }
+        .mnav-lang {
+            font-size: 0.7rem; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--muted);
+            padding: 8px 16px; border: 1px solid var(--rule);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .mnav-lang:hover { border-color: var(--navy); color: var(--navy); }
+        .mnav-lang.active { border-color: var(--navy); color: var(--navy); }
+
+        /* ─── HERO ─────────────────────────────────────────── */
+        /* ─── HERO SLIDER ──────────────────────────────────── */
+        .hero-slider {
+            position: relative; overflow: hidden;
+            height: 460px;
+        }
+        .hs-slide {
+            position: absolute; inset: 0;
+            opacity: 0; z-index: 0;
+            transition: opacity 0.9s ease;
+        }
+        .hs-slide.active { opacity: 1; z-index: 1; }
+        .hs-bg { position: absolute; inset: 0; }
+        .hs-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.04);
+            transition: transform 7s ease-out;
+        }
+        .hs-slide.active .hs-bg img { transform: scale(1); }
+        .hs-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(0,0,0,0.52) 0%,
+                rgba(0,0,0,0.22) 55%,
+                transparent 100%
+            );
+        }
+        .hs-content {
+            position: absolute; inset: 0; z-index: 2;
+            display: flex; flex-direction: column;
+            justify-content: center;
+            padding: 0 80px;
+            max-width: 640px;
+            transform: translateY(14px);
+            opacity: 0;
+            transition: opacity 0.7s 0.3s, transform 0.7s 0.3s;
+        }
+        .hs-slide.active .hs-content {
+            opacity: 1; transform: translateY(0);
+        }
+        .hs-kicker {
+            font-family: var(--ff-sans);
+            font-size: 0.62rem; letter-spacing: 0.38em;
+            text-transform: uppercase; color: rgba(255,255,255,0.7);
+            font-weight: 400; margin-bottom: 18px;
+        }
+        .hs-h1 {
+            font-family: var(--ff-serif);
+            font-size: clamp(2.4rem, 4vw, 4rem);
+            font-weight: 300; line-height: 1.1;
+            color: #fff; margin-bottom: 20px;
+        }
+        .hs-h1 em { font-style: italic; color: rgba(255,255,255,0.85); }
+        .hs-body {
+            font-size: 0.85rem; color: rgba(255,255,255,0.7);
+            line-height: 1.7; margin-bottom: 36px;
+            max-width: 420px;
+        }
+        .hs-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn-fill {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 13px 32px;
+            background: var(--white); color: var(--navy);
+            font-family: var(--ff-sans);
+            font-size: 0.68rem; letter-spacing: 0.18em;
+            text-transform: uppercase; font-weight: 500;
+            transition: background 0.25s, transform 0.2s;
+        }
+        .btn-fill:hover { background: var(--cream); transform: translateY(-1px); }
+        .btn-fill svg { width: 12px; height: 12px; stroke-width: 2; flex-shrink: 0; }
+        .btn-line {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 32px;
+            border: 1px solid rgba(255,255,255,0.5); color: #fff;
+            font-family: var(--ff-sans);
+            font-size: 0.68rem; letter-spacing: 0.18em;
+            text-transform: uppercase; font-weight: 400;
+            transition: border-color 0.25s, background 0.25s;
+        }
+        .btn-line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+        /* Arrows */
+        .hs-arrow {
+            position: absolute; top: 50%; z-index: 10;
+            transform: translateY(-50%);
+            width: 44px; height: 44px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.08);
+            color: #fff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, border-color 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .hs-arrow:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.7); }
+        .hs-arrow svg { width: 18px; height: 18px; stroke-width: 1.5; }
+        .hs-prev { left: 28px; }
+        .hs-next { right: 28px; }
+        /* Dots */
+        .hs-dots {
+            position: absolute; bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 10;
+        }
+        .hs-dot {
+            width: 24px; height: 2px;
+            background: rgba(255,255,255,0.4);
+            border: none; cursor: pointer; padding: 0;
+            transition: background 0.3s, width 0.3s;
+        }
+        .hs-dot.active { background: #fff; width: 40px; }
+
+        /* ─── MARQUEE ──────────────────────────────────────── */
+        .marquee-bar {
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            overflow: hidden; padding: 12px 0;
+            background: var(--white);
+        }
+        .marquee-inner {
+            display: flex; animation: marquee 70s linear infinite;
+            width: max-content;
+        }
+        .marquee-inner:hover { animation-play-state: paused; }
+        @keyframes marquee { to { transform: translateX(-50%); } }
+        .marquee-item {
+            display: flex; align-items: center; gap: 40px;
+            padding: 0 40px; white-space: nowrap;
+            font-size: 0.65rem; letter-spacing: 0.28em;
+            text-transform: uppercase; color: var(--muted);
+        }
+        .marquee-item span { color: var(--navy); font-size: 0.5rem; }
+
+        /* ─── SECTION BASICS ───────────────────────────────── */
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 64px; }
+        .s { padding: 96px 0; }
+        .s--sm { padding: 64px 0; }
+        .s--warm { background: var(--white); }
+        .s--cream { background: var(--white); }
+        .eyebrow {
+            font-size: 0.62rem; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--navy);
+            margin-bottom: 16px; display: block;
+        }
+        .h2 {
+            font-family: var(--ff-serif);
+            font-size: clamp(1.9rem, 3vw, 3rem);
+            font-weight: 300; color: var(--text); line-height: 1.15;
+        }
+        .h2 em { font-style: italic; }
+        .body-text {
+            font-size: 0.88rem; color: var(--muted);
+            line-height: 1.75; max-width: 480px;
+        }
+        .rule-h { width: 40px; height: 2px; background: var(--navy); margin-bottom: 32px; }
+
+        /* ─── CATEGORY GRID ────────────────────────────────── */
+        /* ─── CATEGORIES SLIDER ─────────────────────────────── */
+        .cat-slider-section { background: var(--white); padding: 72px 0 80px; }
+        .cat-slider-head { text-align: center; margin-bottom: 48px; }
+        .cat-slider-head .eyebrow { display: block; margin-bottom: 10px; }
+        .cat-slider-head h2 {
+            font-family: var(--ff-serif); font-size: 2rem;
+            font-weight: 300; color: var(--text);
+        }
+        .cat-slider-outer {
+            position: relative; display: flex; align-items: center;
+            max-width: 1440px; margin: 0 auto; padding: 0 64px;
+            gap: 24px;
+        }
+        .cat-slider-track { flex: 1; overflow: hidden; }
+        .cat-slider-inner {
+            display: flex; gap: 120px;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .cat-slide {
+            flex: 0 0 calc(50% - 60px);
+            text-decoration: none; color: inherit; display: block;
+        }
+        .cat-slide-img {
+            aspect-ratio: 7/6; overflow: hidden; background: var(--white);
+        }
+        .cat-slide-img img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.7s ease;
+        }
+        .cat-slide:hover .cat-slide-img img { transform: scale(1.03); }
+        .cat-slide-name {
+            display: block; text-align: center; margin-top: 16px;
+            font-family: var(--ff-sans); font-size: 0.9rem;
+            font-weight: 400; color: var(--text); letter-spacing: 0.02em;
+        }
+        .cat-slide:hover .cat-slide-name {
+            text-decoration: underline; text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+        }
+        .cat-arr {
+            flex-shrink: 0; width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; cursor: pointer;
+            color: var(--text); transition: opacity 0.2s;
+        }
+        .cat-arr:hover { opacity: 0.5; }
+        .cat-arr svg { width: 44px; height: 12px; }
+
+        /* ─── EDITORIAL BAND ───────────────────────────────── */
+        .editorial-band {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            min-height: 620px;
+        }
+        .editorial-image {
+            position: relative; overflow: hidden;
+        }
+        .editorial-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .editorial-band:hover .editorial-image img { transform: scale(1.03); }
+        .editorial-content {
+            background: var(--navy);
+            display: flex; flex-direction: column;
+            justify-content: flex-end;
+            padding: 64px 64px 72px;
+        }
+        .ed-label {
+            font-size: 0.6rem; letter-spacing: 0.3em;
+            text-transform: uppercase; color: rgba(255,255,255,0.45);
+            margin-bottom: 20px;
+        }
+        .ed-h {
+            font-family: var(--ff-serif); font-size: 2.4rem;
+            font-weight: 300; color: #fff; line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .ed-body {
+            font-size: 0.85rem; color: rgba(255,255,255,0.55);
+            line-height: 1.75; margin-bottom: 36px;
+        }
+        .btn-white {
+            align-self: flex-start;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 28px; border: 1px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.85);
+            font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+            transition: border-color 0.25s, color 0.25s, background 0.25s;
+        }
+        .btn-white:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.08); }
+
+        /* ─── PRODUCT GRID ─────────────────────────────────── */
+        .s-head {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 40px; gap: 20px; flex-wrap: wrap;
+        }
+        .s-head-filters {
+            display: flex; gap: 20px;
+        }
+        .s-filter {
+            font-size: 0.68rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--mid);
+            padding-bottom: 3px; border-bottom: 1px solid transparent;
+            transition: color 0.2s, border-color 0.2s; font-weight: 400;
+        }
+        .s-filter.on, .s-filter:hover { color: var(--navy); border-bottom-color: var(--navy); }
+        /* ─── NEW ARRIVALS STRIP ───────────────────────────── */
+        .arrivals-section { background: #fff; padding: 80px 0 90px; }
+        .arrivals-header {
+            max-width: 1440px; margin: 0 auto 44px; padding: 0 64px;
+            display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; align-items: center;
+        }
+        .arrivals-header-left .eyebrow { display: block; margin-bottom: 10px; }
+        .arrivals-title {
+            font-family: var(--ff-serif); font-size: 2.4rem;
+            font-weight: 300; color: var(--text); line-height: 1.1; margin: 0;
+        }
+        .arrivals-title em { font-style: italic; color: var(--text); }
+        .arrivals-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+        .arrivals-filter {
+            padding: 7px 18px; border: 1px solid #e0ddd8; background: none;
+            font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+            cursor: pointer; color: #999; transition: all 0.2s;
+        }
+        .arrivals-filter.on, .arrivals-filter:hover { background: #1c1916; color: #fff; border-color: #1c1916; }
+        .arrivals-slider-outer {
+            max-width: 1440px; margin: 0 auto; padding: 0 64px;
+        }
+        .arrivals-strip-wrap { overflow: hidden; position: relative; }
+        .arrivals-header-right { display: flex; align-items: center; gap: 24px; }
+        .arr-nav { display: flex; gap: 6px; }
+        .arr-btn {
+            width: 36px; height: 36px; border: 1px solid var(--rule);
+            background: none; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; transition: all 0.2s;
+        }
+        .arr-btn svg { width: 14px; height: 14px; stroke-width: 1.5; color: var(--text); }
+        .arr-btn:hover { background: var(--text); }
+        .arr-btn:hover svg { color: #fff; }
+        .arrivals-strip {
+            display: flex; gap: 24px;
+            will-change: transform;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+        .arrivals-nav {
+            display: flex; align-items: center; justify-content: flex-start;
+            max-width: 1440px; margin: 36px auto 0; padding: 0 64px;
+        }
+        .arrivals-viewall {
+            font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #1c1916;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            border-bottom: 1px solid #1c1916; padding-bottom: 2px; transition: gap 0.2s;
+        }
+        .arrivals-viewall:hover { gap: 14px; }
+        .arrivals-viewall svg { width: 12px; height: 12px; stroke-width: 2; }
+        .prod-grid { display: none; }
+        .prod-card {
+            flex: 0 0 calc(25% - 18px);
+            position: relative; cursor: pointer; background: #fff;
+        }
+        .prod-img-wrap {
+            position: relative; overflow: hidden; aspect-ratio: 3/4; background: transparent;
+        }
+        .prod-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25,0.1,0.25,1);
+        }
+        .prod-card:hover .prod-img-wrap img { transform: scale(1.04); }
+        .prod-badge {
+            position: absolute; top: 14px; left: 14px;
+            background: #fff; color: #1c1916;
+            font-size: 0.55rem; letter-spacing: 0.16em;
+            text-transform: uppercase; padding: 4px 10px;
+            font-weight: 400;
+        }
+        .prod-badge--sale { background: #b52828; color: #fff; }
+        .prod-wish,
+        .prod-quick {
+            position: absolute; right: 12px;
+            width: 34px; height: 34px;
+            background: rgba(255,255,255,0.92); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.25s, background 0.2s;
+        }
+        .prod-wish { bottom: 56px; }
+        .prod-quick { bottom: 12px; }
+        .prod-wish svg, .prod-quick svg { width: 16px; height: 16px; stroke-width: 1.5; color: #555; pointer-events: none; }
+        .prod-wish:hover, .prod-quick:hover { background: #fff; }
+        .prod-wish:hover svg, .prod-quick:hover svg { color: #1c1916; }
+        .prod-card:hover .prod-wish,
+        .prod-card:hover .prod-quick { opacity: 1; }
+        .prod-wish svg { width: 16px; height: 16px; stroke-width: 1.5; color: #888; }
+        .prod-wish:hover svg { color: #1c1916; }
+        .prod-swatches {
+            position: absolute; bottom: 12px; left: 12px;
+            display: flex; flex-direction: row; gap: 5px; z-index: 2;
+            opacity: 0; transition: opacity 0.25s;
+        }
+        .prod-card:hover .prod-swatches { opacity: 1; }
+        .swatch {
+            width: 11px; height: 11px; border-radius: 50%;
+            cursor: pointer; transition: transform 0.2s;
+            border: 1px solid rgba(0,0,0,0.12);
+        }
+        .swatch:hover { transform: scale(1.2); }
+        .prod-info { padding: 14px 0 20px; }
+        .prod-brand {
+            font-size: 0.58rem; letter-spacing: 0.22em;
+            text-transform: uppercase; color: #888;
+            font-weight: 700; margin-bottom: 5px;
+        }
+        .prod-name {
+            font-family: var(--ff-serif); font-size: 1rem;
+            font-weight: 300; color: var(--text);
+            line-height: 1.35; margin-bottom: 10px;
+        }
+        .prod-foot {
+            display: flex; justify-content: space-between;
+            align-items: center; gap: 8px;
+        }
+        .prod-sizes {
+            display: flex; gap: 8px; flex-wrap: wrap;
+            font-size: 0.65rem; letter-spacing: 0.04em;
+            color: var(--muted); font-family: var(--ff-sans);
+        }
+        .prod-sizes span { cursor: pointer; transition: color 0.2s; }
+        .prod-sizes span:hover { color: var(--text); }
+        .prod-price {
+            font-size: 0.78rem; color: var(--text); font-weight: 500;
+            white-space: nowrap;
+            display: flex; gap: 6px; align-items: center;
+        }
+        .prod-price s { color: var(--mid); font-size: 0.72rem; }
+        .prod-price .sale { color: #b52828; }
+
+        /* ─── SHOP THE SET ─────────────────────────────────── */
+        .sets-section {
+            display: flex; align-items: stretch; position: relative;
+            width: 100%; height: 700px;
+        }
+        .sets-editorial {
+            flex: 0 0 50%; overflow: hidden; height: 700px;
+        }
+        .sets-editorial img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+        }
+        .sets-panel {
+            flex: 1; display: flex; flex-direction: column; justify-content: center;
+            padding: 48px 60px; background: #f8f8f8;
+        }
+        .sets-title {
+            font-family: var(--ff-serif); font-size: 1.6rem; font-weight: 400;
+            font-style: italic; color: var(--text); margin: 0 0 32px;
+            text-align: center;
+        }
+        .sets-content { width: 100%; transition: opacity 0.35s, transform 0.35s; }
+        .sets-content.fade-out { opacity: 0; transform: translateY(10px); }
+        .sets-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px;
+        }
+        .set-item {
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            transition: opacity 0.2s;
+        }
+        .set-item:hover { opacity: 0.7; }
+        .set-item-img {
+            background: transparent; display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 160px; overflow: hidden;
+        }
+        .set-item-img img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+        }
+        .set-item-name {
+            font-family: var(--ff-sans); font-size: 0.62rem;
+            letter-spacing: 0.14em; color: var(--text);
+            text-transform: uppercase; text-align: center;
+        }
+        .sets-nav {
+            position: absolute; top: 50%; left: 0; right: 0;
+            transform: translateY(-50%);
+            display: flex; justify-content: space-between;
+            padding: 0 16px; pointer-events: none;
+        }
+        .sets-nav .sets-arrow { pointer-events: all; }
+        .sets-arrow {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 1px solid #ccc; background: rgba(255,255,255,0.9);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .sets-arrow:hover { border-color: var(--text); background: var(--text); }
+        .sets-arrow:hover svg { stroke: #fff; }
+        .sets-arrow svg { width: 12px; height: 12px; stroke-width: 1.5; stroke: var(--text); }
+        /* ─── BRANDS ───────────────────────────────────────── */
+        .brands-rail {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border-top: 1px solid var(--rule);
+            border-left: 1px solid var(--rule);
+        }
+        .brand-cell {
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            padding: 36px 20px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.25s;
+            cursor: pointer;
+        }
+        .brand-cell:hover { background: var(--warm); }
+        .brand-cell-name {
+            font-family: var(--ff-serif); font-size: 1rem;
+            font-weight: 300; color: var(--muted);
+            letter-spacing: 0.05em; text-align: center;
+            transition: color 0.25s;
+        }
+        .brand-cell:hover .brand-cell-name { color: var(--navy); }
+
+        /* ─── SHOP OUR PRODUCTS ────────────────────────────── */
+        .shop-products-section {
+            display: flex; background: #fff;
+            max-width: 1280px; margin: 80px auto 0;
+            min-height: 560px;
+        }
+        .shop-products-photo {
+            flex: 0 0 42%; position: relative; overflow: hidden;
+        }
+        .shop-products-photo img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top;
+            display: block;
+        }
+        .shop-products-panel {
+            flex: 1; padding: 48px 56px; display: flex; flex-direction: column;
+            position: relative;
+        }
+        .shop-products-top {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 32px;
+        }
+        .shop-products-left { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+        .shop-label-vertical {
+            writing-mode: vertical-rl; text-orientation: mixed;
+            font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase;
+            color: #000000; font-weight: 400;
+        }
+        .shop-products-title {
+            font-family: var(--ff-serif); font-size: 2rem; font-weight: 300;
+            color: var(--text); margin: 0;
+        }
+        .shop-top-line {
+            flex: 1; height: 1px; background: #ddd;
+        }
+        .shop-prod-arrows { display: flex; gap: 10px; flex-shrink: 0; }
+        .shop-arr {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 1px solid #ccc; background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .shop-arr:hover { border-color: var(--text); background: var(--text); }
+        .shop-arr:hover svg { stroke: #fff; }
+        .shop-arr svg { width: 14px; height: 14px; stroke-width: 1.5; stroke: var(--text); transition: stroke 0.2s; }
+        .shop-prod-list { display: flex; flex-direction: column; gap: 0; overflow: hidden; }
+        .shop-prod-item {
+            display: flex; align-items: center; gap: 20px;
+            padding: 16px 0; border-bottom: 1px solid #e8e4df;
+            text-decoration: none; color: inherit;
+            transition: opacity 0.15s;
+        }
+        .shop-prod-item:first-child { border-top: none; }
+        .shop-prod-item:hover { opacity: 0.7; }
+        .shop-prod-thumb {
+            width: 88px; height: 88px; flex-shrink: 0;
+            background: #eeebe6; overflow: hidden; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .shop-prod-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+        .shop-prod-meta { flex: 1; }
+        .shop-prod-swatches { display: flex; gap: 5px; margin-bottom: 6px; }
+        .shop-prod-swatch {
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .shop-prod-name {
+            font-family: var(--ff-serif); font-size: 1rem; font-weight: 400;
+            color: #000; margin-bottom: 3px;
+        }
+        .shop-prod-sub {
+            font-size: 0.72rem; color: #666; margin-bottom: 5px; letter-spacing: 0.02em;
+        }
+        .shop-prod-price { font-size: 0.82rem; color: #000; }
+
+        /* ─── FASHION LOOKUP ────────────────────────────────── */
+        .fashion-lookup-section {
+            max-width: 1280px; margin: 80px auto 0;
+            display: flex; align-items: stretch; height: 460px;
+        }
+        .fashion-lookup-left {
+            flex: 0 0 50%; position: relative; overflow: hidden; background: #f5f4f2;
+            height: 460px;
+        }
+        .fashion-lookup-editorial {
+            width: 100%; height: 100%;
+        }
+        .fashion-lookup-editorial img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: opacity 0.4s ease;
+        }
+        .fashion-lookup-bottom {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 20px 28px 28px;
+            background: linear-gradient(to top, rgba(255,255,255,0.85) 0%, transparent 100%);
+        }
+        .fashion-lookup-title {
+            font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 400;
+            color: #000; margin: 0 0 10px;
+        }
+        .fashion-lookup-cats {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .fcat-link {
+            font-family: var(--ff-sans); font-size: 0.72rem;
+            letter-spacing: 0.06em; color: #000; cursor: pointer;
+            text-decoration: underline; text-underline-offset: 3px;
+            border: none; background: none; padding: 0;
+            transition: opacity 0.2s;
+        }
+        .fcat-link:hover { opacity: 0.6; }
+        .fcat-link.active { font-weight: 600; }
+        .fcat-sep { color: #aaa; font-size: 0.8rem; }
+        .fashion-lookup-right {
+            flex: 1; background: #f8f7f5;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 48px 40px 40px;
+        }
+        .fashion-prod-display { display: flex; flex-direction: column; align-items: center; }
+        .fashion-prod-img-wrap {
+            width: 200px; height: 220px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .fashion-prod-img-wrap img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+        .fashion-prod-name {
+            font-family: var(--ff-serif); font-size: 1.3rem; font-weight: 400;
+            color: #000; margin-bottom: 8px; text-align: center;
+        }
+        .fashion-prod-price {
+            font-family: var(--ff-sans); font-size: 0.78rem;
+            color: #666; margin-bottom: 20px;
+        }
+        .fashion-prod-dots {
+            display: flex; align-items: center; gap: 7px;
+        }
+        .fdot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #333; cursor: pointer; transition: all 0.2s;
+        }
+        .fdot.active {
+            background: none; border: 1.5px solid #333; width: 10px; height: 10px;
+        }
+        /* ─── BEAUTY SPLIT ─────────────────────────────────── */
+        .beauty-split {
+            display: grid; grid-template-columns: 1fr 1fr;
+        }
+        .beauty-side {
+            aspect-ratio: unset; min-height: 560px;
+            position: relative; overflow: hidden; cursor: pointer;
+        }
+        .beauty-side img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .beauty-side:hover img { transform: scale(1.04); }
+        .beauty-veil {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,56,118,0.7) 0%, rgba(0,56,118,0.1) 50%, transparent 100%);
+        }
+        .beauty-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 36px 40px;
+        }
+        .bc-tag {
+            font-size: 0.58rem; letter-spacing: 0.28em;
+            text-transform: uppercase; color: rgba(255,255,255,0.6);
+            margin-bottom: 8px; display: block;
+        }
+        .bc-title {
+            font-family: var(--ff-serif); font-size: 1.6rem;
+            font-weight: 300; color: #fff; line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .bc-link {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-size: 0.65rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: rgba(255,255,255,0.75);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 3px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .beauty-side:hover .bc-link { color: #fff; border-color: #fff; }
+        .bc-link svg { width: 11px; height: 11px; stroke-width: 2; }
+
+        /* ─── LOOKBOOK ─────────────────────────────────────── */
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 2px;
+        }
+        .lb-tile {
+            position: relative; overflow: hidden; cursor: pointer;
+            aspect-ratio: 2 / 3;
+        }
+        .lb-tile--lg { aspect-ratio: unset; grid-row: span 2; }
+        .lb-tile img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.65s ease;
+        }
+        .lb-tile:hover img { transform: scale(1.05); }
+        .lb-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,56,118,0);
+            transition: background 0.35s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .lb-tile:hover .lb-overlay { background: rgba(0,56,118,0.35); }
+        .lb-shop-btn {
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.3s, transform 0.3s;
+            display: flex; align-items: center; gap: 8px;
+            padding: 11px 24px;
+            background: rgba(255,255,255,0.95);
+            color: var(--navy);
+            font-size: 0.65rem; letter-spacing: 0.2em;
+            text-transform: uppercase; font-weight: 400;
+        }
+        .lb-tile:hover .lb-shop-btn { opacity: 1; transform: none; }
+        .lb-shop-btn svg { width: 12px; height: 12px; stroke-width: 2; }
+        .lb-num {
+            position: absolute; bottom: 16px; left: 18px;
+            font-family: var(--ff-serif); font-size: 0.75rem;
+            color: rgba(255,255,255,0.7); letter-spacing: 0.15em;
+        }
+
+        /* ─── STORY STRIP ──────────────────────────────────── */
+        .story-strip {
+            background: var(--navy);
+            padding: 80px 0;
+        }
+        .story-inner {
+            display: grid; grid-template-columns: 1fr 2fr;
+            gap: 80px; align-items: center;
+            max-width: 1440px; margin: 0 auto; padding: 0 64px;
+        }
+        .story-num {
+            font-family: var(--ff-serif); font-size: 7rem;
+            color: rgba(255,255,255,0.08); line-height: 1;
+            margin-bottom: -20px;
+        }
+        .story-eyebrow {
+            font-size: 0.6rem; letter-spacing: 0.3em;
+            text-transform: uppercase; color: rgba(255,255,255,0.45);
+            margin-bottom: 12px;
+        }
+        .story-h {
+            font-family: var(--ff-serif); font-size: 1.9rem;
+            font-weight: 300; color: #fff; line-height: 1.3;
+            margin-bottom: 20px;
+        }
+        .story-h em { font-style: italic; }
+        .story-p {
+            font-size: 0.88rem; color: rgba(255,255,255,0.5);
+            line-height: 1.8; max-width: 580px; margin-bottom: 36px;
+        }
+        .story-stats {
+            display: flex; gap: 48px; padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .stat-n {
+            font-family: var(--ff-serif); font-size: 2rem;
+            color: #fff; line-height: 1;
+        }
+        .stat-l {
+            font-size: 0.65rem; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+        }
+
+        /* ─── SERVICES ─────────────────────────────────────── */
+        .services-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .service {
+            padding: 64px 48px;
+            text-align: center;
+            position: relative;
+            border-right: 1px solid var(--rule);
+            transition: background 0.35s ease;
+            overflow: hidden;
+        }
+        .service:last-child { border-right: none; }
+        .service::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 32px; height: 1px;
+            background: var(--navy);
+            transition: transform 0.4s ease;
+        }
+        .service:hover { background: var(--warm); }
+        .service:hover::before { transform: translateX(-50%) scaleX(1); }
+        .service-icon-wrap {
+            width: 52px; height: 52px;
+            margin: 0 auto 28px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--rule);
+            border-radius: 50%;
+            transition: border-color 0.35s ease;
+        }
+        .service:hover .service-icon-wrap { border-color: var(--navy); }
+        .service-icon {
+            width: 22px; height: 22px;
+            color: var(--navy);
+            opacity: 0.75;
+        }
+        .service-title {
+            font-family: var(--ff-serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+        .service-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.85;
+            max-width: 210px;
+            margin: 0 auto;
+        }
+
+        /* ─── PRESS ────────────────────────────────────────── */
+        .press-row {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--rule);
+            border: 1px solid var(--rule);
+        }
+        .press-card {
+            background: var(--white);
+            padding: 48px 40px;
+            transition: background 0.25s;
+        }
+        .press-card:hover { background: var(--warm); }
+        .press-stars {
+            color: var(--navy); letter-spacing: 2px; margin-bottom: 16px;
+            font-size: 0.75rem;
+        }
+        .press-q {
+            font-family: var(--ff-serif); font-size: 1.1rem;
+            font-weight: 300; font-style: italic;
+            color: var(--text); line-height: 1.6; margin-bottom: 20px;
+        }
+        .press-pub {
+            font-size: 0.6rem; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--navy); font-weight: 400;
+        }
+
+        /* ─── NEWSLETTER ───────────────────────────────────── */
+        .newsletter {
+            background: var(--white);
+            padding: 96px 0;
+            text-align: center;
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+        .nl-inner { max-width: 560px; margin: 0 auto; }
+        .nl-h {
+            font-family: var(--ff-serif); font-size: 2.6rem;
+            font-weight: 300; color: var(--text); margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .nl-h em { font-style: italic; color: var(--navy); }
+        .nl-sub {
+            font-size: 0.88rem; color: var(--muted);
+            margin-bottom: 36px; line-height: 1.7;
+        }
+        .nl-form {
+            display: flex; border: 1px solid var(--ash);
+            background: var(--white); max-width: 440px; margin: 0 auto 16px;
+        }
+        .nl-input {
+            flex: 1; padding: 14px 20px;
+            background: transparent; border: none; outline: none;
+            font-family: var(--ff-sans); font-size: 0.85rem;
+            color: var(--text); font-weight: 300;
+        }
+        .nl-input::placeholder { color: var(--mid); }
+        .nl-btn {
+            padding: 14px 24px;
+            background: var(--navy); color: #fff;
+            font-size: 0.65rem; letter-spacing: 0.18em;
+            text-transform: uppercase; font-weight: 400;
+            transition: background 0.25s;
+        }
+        .nl-btn:hover { background: var(--navy-lt); }
+        .nl-note { font-size: 0.7rem; color: var(--mid); }
+
+        /* ─── FOOTER ───────────────────────────────────────── */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--rule);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 48px; padding: 72px 64px 64px;
+            max-width: 1440px; margin: 0 auto;
+            border-bottom: 1px solid var(--rule);
+        }
+        .f-logo img { height: 30px; margin-bottom: 20px; }
+        .f-tagline {
+            font-size: 0.82rem; color: var(--muted);
+            line-height: 1.7; max-width: 240px; margin-bottom: 28px;
+        }
+        .f-socials { display: flex; gap: 10px; }
+        .f-social {
+            width: 34px; height: 34px; border: 1px solid var(--rule);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted); transition: border-color 0.2s, color 0.2s;
+        }
+        .f-social:hover { border-color: var(--navy); color: var(--navy); }
+        .f-social svg { width: 14px; height: 14px; stroke-width: 1.5; }
+        .f-col-title {
+            font-size: 0.62rem; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--text);
+            font-weight: 400; margin-bottom: 20px;
+        }
+        .f-links { display: flex; flex-direction: column; gap: 11px; }
+        .f-links a {
+            font-size: 0.82rem; color: var(--muted);
+            transition: color 0.2s; font-weight: 300;
+        }
+        .f-links a:hover { color: var(--navy); }
+        .footer-bottom {
+            max-width: 1440px; margin: 0 auto;
+            padding: 20px 64px;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 20px; flex-wrap: wrap;
+        }
+        .f-copy { font-size: 0.72rem; color: var(--mid); }
+        .f-legal { display: flex; gap: 20px; }
+        .f-legal a { font-size: 0.72rem; color: var(--mid); transition: color 0.2s; }
+        .f-legal a:hover { color: var(--navy); }
+        .f-pay { display: flex; gap: 6px; }
+        .pay-tag {
+            padding: 4px 9px; border: 1px solid var(--rule);
+            font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        /* ─── BACK TO TOP ──────────────────────────────────── */
+        .btt {
+            position: fixed; bottom: 28px; right: 28px;
+            width: 44px; height: 44px;
+            background: var(--white); border: 1px solid var(--rule);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--navy); opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, box-shadow 0.3s;
+            z-index: 700;
+        }
+        .btt.show { opacity: 1; visibility: visible; }
+        .btt:hover { box-shadow: 0 4px 16px rgba(0,56,118,0.14); }
+        .btt svg { width: 16px; height: 16px; stroke-width: 2; }
+
+        /* ─── REVEAL ON SCROLL ─────────────────────────────── */
+        .reveal {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        /* ─── RESPONSIVE ───────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .container { padding: 0 32px; }
+            .hero { grid-template-columns: 1fr; min-height: 480px; max-height: 540px; }
+            .hero-image { position: absolute; inset: 0; }
+            .hero-copy {
+                position: relative; z-index: 1; background: rgba(250,248,245,0.92);
+                margin-top: auto; padding: 56px 40px;
+            }
+            .hero-copy::before { display: none; }
+            .cat-magazine, .cat-mag-bottom { gap: 4px; }
+            .cat-magazine { height: 420px; }
+            .cat-mag-bottom { height: 200px; }
+            .prod-grid { grid-template-columns: repeat(2, 1fr); }
+            .brands-rail { grid-template-columns: repeat(3, 1fr); }
+            .beauty-split { grid-template-columns: 1fr; }
+            .editorial-band { grid-template-columns: 1fr; }
+            .editorial-image { min-height: 400px; }
+            .services-row { grid-template-columns: repeat(2, 1fr); }
+            .service:nth-child(2) { border-right: none; }
+            .service:nth-child(1), .service:nth-child(2) { border-bottom: 1px solid var(--rule); }
+            .service { padding: 52px 36px; }
+            .press-row { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; padding: 48px 32px; }
+            .footer-bottom { padding: 20px 32px; }
+            .story-inner { grid-template-columns: 1fr; gap: 0; padding: 0 32px; }
+            .story-num { font-size: 4rem; }
+            .lookbook-grid { grid-template-columns: repeat(2, 1fr); }
+            .lb-tile--lg { grid-row: span 1; aspect-ratio: 2 / 3; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .header-inner { padding: 0 20px; }
+            .header-search { max-width: 160px; }
+            .h-btn--text { display: none; }
+            .mobile-ham { display: flex; }
+            .main-nav { display: none; }
+            .s { padding: 64px 0; }
+            .cat-magazine, .cat-mag-bottom { gap: 4px; }
+            .cat-magazine { height: 420px; }
+            .cat-mag-bottom { height: 200px; }
+            .prod-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-row { grid-template-columns: 1fr; }
+            .service { border-right: none; border-bottom: 1px solid var(--rule); padding: 44px 32px; }
+            .service:last-child { border-bottom: none; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; padding: 20px; }
+            .story-inner { padding: 0 20px; }
+            .search-sheet { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Scroll bar -->
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- Back to top -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+</button>
+
+<!-- Search sheet -->
+<div class="search-sheet" id="searchSheet" role="dialog" aria-label="Search">
+    <div class="search-row">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20" stroke-width="1.5" style="color:var(--navy)"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+        <input class="search-field" type="search" placeholder="Search brands, products, categories…">
+        <button class="search-close" onclick="closeSearch()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <div class="search-pills">
+        <button class="search-pill">Valentino</button>
+        <button class="search-pill">Summer Dresses</button>
+        <button class="search-pill">Gold Jewellery</button>
+        <button class="search-pill">Fine Fragrance</button>
+        <button class="search-pill">Designer Bags</button>
+        <button class="search-pill">Charlotte Tilbury</button>
+    </div>
+</div>
+
+<!-- Mobile nav scrim -->
+<div class="nav-scrim" id="navScrim" onclick="closeMobileNav()"></div>
+
+<!-- Mobile nav drawer -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <div class="mnav-head">
+        <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon" height="28">
+        <button class="mnav-close" onclick="closeMobileNav()" aria-label="Close">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <div class="mnav-links">
+        <a href="#">New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="14" height="14" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+        <a href="#">Women</a>
+        <a href="#">Men</a>
+        <a href="#">Beauty</a>
+        <a href="#">Jewellery</a>
+        <a href="#">Kids</a>
+        <a href="#">Brands A–Z</a>
+        <a href="#" class="sale">Sale</a>
+    </div>
+    <div class="mnav-foot">
+        <button class="mnav-lang active">EN</button>
+        <button class="mnav-lang">AR</button>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="site-header" id="siteHeader">
+    <div class="header-inner">
+
+        <!-- Left — search bar -->
+        <div class="header-search">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+            </svg>
+            <input type="search" placeholder="Search brands, products…" aria-label="Search">
+        </div>
+
+        <!-- Centre — logo -->
+        <div class="header-logo">
+            <a href="/" aria-label="Blue Salon — Home">
+                <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon">
+            </a>
+        </div>
+
+        <!-- Right — wishlist · account · bag · mobile -->
+        <div class="header-actions">
+            <!-- Language switcher -->
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" onclick="toggleLang()" aria-label="Select language">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"/></svg>
+                    <span id="langLabel">EN</span>
+                    <svg class="lang-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                </button>
+                <div class="lang-drop">
+                    <div class="lang-option active" onclick="setLang('EN', this)"><span class="lang-flag">🇬🇧</span> English</div>
+                    <div class="lang-option" onclick="setLang('AR', this)"><span class="lang-flag">🇶🇦</span> العربية</div>
+                    <div class="lang-option" onclick="setLang('FR', this)"><span class="lang-flag">🇫🇷</span> Français</div>
+                </div>
+            </div>
+            <a href="#" class="h-btn" aria-label="Wishlist">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+            </a>
+            <a href="#" class="h-btn" aria-label="My Account">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </a>
+            <a href="#" class="h-btn" aria-label="Shopping Bag — 2 items">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+                <span class="cart-pip">2</span>
+            </a>
+            <button class="mobile-ham" onclick="openMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- ── MAIN NAVIGATION ──────────────────────────────────────── -->
+<nav class="main-nav" id="mainNav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+
+        <!-- New In -->
+        <div class="nav-item" data-mega="newin">
+            <a href="#" class="main-nav-link" aria-haspopup="true">New In</a>
+        </div>
+
+        <!-- Women -->
+        <div class="nav-item" data-mega="women">
+            <a href="#" class="main-nav-link" aria-haspopup="true">Women</a>
+        </div>
+
+        <!-- Men -->
+        <div class="nav-item" data-mega="men">
+            <a href="#" class="main-nav-link" aria-haspopup="true">Men</a>
+        </div>
+
+        <!-- Beauty -->
+        <div class="nav-item" data-mega="beauty">
+            <a href="#" class="main-nav-link" aria-haspopup="true">Beauty</a>
+        </div>
+
+        <!-- Jewellery -->
+        <div class="nav-item" data-mega="jewellery">
+            <a href="#" class="main-nav-link" aria-haspopup="true">Jewellery</a>
+        </div>
+
+        <!-- Kids -->
+        <div class="nav-item" data-mega="kids">
+            <a href="#" class="main-nav-link" aria-haspopup="true">Kids</a>
+        </div>
+
+        <!-- Brands (no mega) -->
+        <div class="nav-item">
+            <a href="#" class="main-nav-link">Brands</a>
+        </div>
+
+        <!-- Sale (no mega) -->
+        <div class="nav-item">
+            <a href="#" class="main-nav-link main-nav-link--sale">Sale</a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- ── MEGA MENUS — 3 LEVEL ──────────────────────────────────── -->
+
+<!-- ══ NEW IN ══ -->
+<div class="mega" id="mega-newin">
+  <div class="mega-3col">
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">New In</div>
+      <a class="mega-sublink active" data-panel="ni-women" data-img="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=460&q=80" data-tag="New In Women" data-title="Fresh Arrivals for Her">Women <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ni-men" data-img="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=460&q=80" data-tag="New In Men" data-title="Fresh Arrivals for Him">Men <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ni-kids" data-img="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=460&q=80" data-tag="New In Kids" data-title="Fresh Arrivals for Kids">Kids <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ni-beauty" data-img="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=460&q=80" data-tag="New In Beauty" data-title="Just Landed in Beauty">Beauty <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ni-jewellery" data-img="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=460&q=80" data-tag="New In Jewellery" data-title="New Season Jewellery">Jewellery <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+
+    <div class="mega-panels">
+
+      <!-- NEW IN WOMEN -->
+      <div class="mega-panel active" id="ni-women">
+        <div class="mega-panel-head">New In Women</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/101/100/100" alt=""></div><span class="mega-tile-name">Dresses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/102/100/100" alt=""></div><span class="mega-tile-name">Tops &amp; Blouses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/103/100/100" alt=""></div><span class="mega-tile-name">Trousers &amp; Jeans</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/104/100/100" alt=""></div><span class="mega-tile-name">Shoes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/105/100/100" alt=""></div><span class="mega-tile-name">Bags</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/106/100/100" alt=""></div><span class="mega-tile-name">Knitwear</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/107/100/100" alt=""></div><span class="mega-tile-name">Outerwear</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/108/100/100" alt=""></div><span class="mega-tile-name">Abayas</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View all Women's New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+
+      <!-- NEW IN MEN -->
+      <div class="mega-panel" id="ni-men">
+        <div class="mega-panel-head">New In Men</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/111/100/100" alt=""></div><span class="mega-tile-name">Shirts &amp; Polos</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/112/100/100" alt=""></div><span class="mega-tile-name">T-Shirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/113/100/100" alt=""></div><span class="mega-tile-name">Suits &amp; Blazers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/114/100/100" alt=""></div><span class="mega-tile-name">Trousers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/115/100/100" alt=""></div><span class="mega-tile-name">Shoes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/116/100/100" alt=""></div><span class="mega-tile-name">Bags &amp; Briefcases</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/117/100/100" alt=""></div><span class="mega-tile-name">Accessories</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/118/100/100" alt=""></div><span class="mega-tile-name">Knitwear</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View all Men's New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+
+      <!-- NEW IN KIDS -->
+      <div class="mega-panel" id="ni-kids">
+        <div class="mega-panel-head">New In Kids</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/121/100/100" alt=""></div><span class="mega-tile-name">Baby Girls (0–2)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/122/100/100" alt=""></div><span class="mega-tile-name">Baby Boys (0–2)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/123/100/100" alt=""></div><span class="mega-tile-name">Girls (2–8 Yrs)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/124/100/100" alt=""></div><span class="mega-tile-name">Boys (2–8 Yrs)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/125/100/100" alt=""></div><span class="mega-tile-name">Girls (8–16 Yrs)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/126/100/100" alt=""></div><span class="mega-tile-name">Boys (8–16 Yrs)</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/127/100/100" alt=""></div><span class="mega-tile-name">Kids Shoes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/128/100/100" alt=""></div><span class="mega-tile-name">Accessories</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View all Kids' New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+
+      <!-- NEW IN BEAUTY -->
+      <div class="mega-panel" id="ni-beauty">
+        <div class="mega-panel-head">New In Beauty</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/131/100/100" alt=""></div><span class="mega-tile-name">Skincare</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/132/100/100" alt=""></div><span class="mega-tile-name">Make Up</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/133/100/100" alt=""></div><span class="mega-tile-name">Fragrance</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/134/100/100" alt=""></div><span class="mega-tile-name">Hair Care</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/135/100/100" alt=""></div><span class="mega-tile-name">Body &amp; Bath</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/136/100/100" alt=""></div><span class="mega-tile-name">Nail Care</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View all Beauty New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+
+      <!-- NEW IN JEWELLERY -->
+      <div class="mega-panel" id="ni-jewellery">
+        <div class="mega-panel-head">New In Jewellery</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/141/100/100" alt=""></div><span class="mega-tile-name">Necklaces</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/142/100/100" alt=""></div><span class="mega-tile-name">Rings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/143/100/100" alt=""></div><span class="mega-tile-name">Earrings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/144/100/100" alt=""></div><span class="mega-tile-name">Bracelets</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/145/100/100" alt=""></div><span class="mega-tile-name">Watches</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/146/100/100" alt=""></div><span class="mega-tile-name">Gift Sets</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View all Jewellery New In <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+
+    </div>
+
+    <!-- Feature image -->
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="nifeat-img" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="nifeat-tag">New In Women</div>
+        <div class="mega-feat-title" id="nifeat-title">Fresh Arrivals for Her</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WOMEN ══ -->
+<div class="mega" id="mega-women">
+  <div class="mega-3col">
+    <!-- L2: sub-categories -->
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">Women</div>
+      <a class="mega-sublink active" data-panel="wc" data-img="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=460&q=80" data-tag="Women's Fashion" data-title="The Women's Clothing Edit">Clothing <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ws" data-img="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=460&q=80" data-tag="Shoes &amp; Heels" data-title="Step Into Luxury">Shoes <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="wb" data-img="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=460&q=80" data-tag="Bags" data-title="Iconic Bags &amp; Handbags">Bags <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="wj" data-img="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=460&q=80" data-tag="Fine Jewellery" data-title="Crafted for Eternity">Jewellery <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="wa" data-img="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=460&q=80" data-tag="Accessories" data-title="The Finishing Touch">Accessories <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="wm" data-img="https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=460&q=80" data-tag="Modest Wear" data-title="Elegance Reimagined">Modest Wear <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+    <!-- L3: item panels -->
+    <div class="mega-panels">
+      <div class="mega-panel active" id="wc">
+        <div class="mega-panel-head">Shop Clothing</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/10/100/100" alt=""></div><span class="mega-tile-name">Dresses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/11/100/100" alt=""></div><span class="mega-tile-name">Tops &amp; Blouses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/12/100/100" alt=""></div><span class="mega-tile-name">Trousers &amp; Jeans</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/13/100/100" alt=""></div><span class="mega-tile-name">Knitwear</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/14/100/100" alt=""></div><span class="mega-tile-name">Outerwear &amp; Coats</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/15/100/100" alt=""></div><span class="mega-tile-name">Suits &amp; Co-ords</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/16/100/100" alt=""></div><span class="mega-tile-name">Swimwear</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="ws">
+        <div class="mega-panel-head">Shop Shoes</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/17/100/100" alt=""></div><span class="mega-tile-name">Heels &amp; Pumps</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/18/100/100" alt=""></div><span class="mega-tile-name">Flats &amp; Loafers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/19/100/100" alt=""></div><span class="mega-tile-name">Boots</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/20/100/100" alt=""></div><span class="mega-tile-name">Sandals &amp; Mules</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/21/100/100" alt=""></div><span class="mega-tile-name">Trainers</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="wb">
+        <div class="mega-panel-head">Shop Bags</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/22/100/100" alt=""></div><span class="mega-tile-name">Handbags</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/23/100/100" alt=""></div><span class="mega-tile-name">Clutches &amp; Mini Bags</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/24/100/100" alt=""></div><span class="mega-tile-name">Totes &amp; Shoppers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/25/100/100" alt=""></div><span class="mega-tile-name">Crossbody Bags</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/26/100/100" alt=""></div><span class="mega-tile-name">Backpacks</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="wj">
+        <div class="mega-panel-head">Shop Jewellery</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/27/100/100" alt=""></div><span class="mega-tile-name">Necklaces</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/28/100/100" alt=""></div><span class="mega-tile-name">Rings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/29/100/100" alt=""></div><span class="mega-tile-name">Earrings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/30/100/100" alt=""></div><span class="mega-tile-name">Bracelets &amp; Bangles</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/31/100/100" alt=""></div><span class="mega-tile-name">Watches</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="wa">
+        <div class="mega-panel-head">Shop Accessories</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/32/100/100" alt=""></div><span class="mega-tile-name">Sunglasses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/33/100/100" alt=""></div><span class="mega-tile-name">Scarves &amp; Wraps</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/34/100/100" alt=""></div><span class="mega-tile-name">Belts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/35/100/100" alt=""></div><span class="mega-tile-name">Hats &amp; Hair</span></a>
+        </div>
+      </div>
+      <div class="mega-panel" id="wm">
+        <div class="mega-panel-head">Shop Modest Wear</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/36/100/100" alt=""></div><span class="mega-tile-name">Abayas</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/37/100/100" alt=""></div><span class="mega-tile-name">Modest Dresses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/38/100/100" alt=""></div><span class="mega-tile-name">Maxi Skirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/39/100/100" alt=""></div><span class="mega-tile-name">Cover-Ups &amp; Kaftans</span></a>
+        </div>
+      </div>
+    </div>
+    <!-- Feature image -->
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="wfeat-img" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="wfeat-tag">Women's Fashion</div>
+        <div class="mega-feat-title" id="wfeat-title">The Women's Clothing Edit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MEN ══ -->
+<div class="mega" id="mega-men">
+  <div class="mega-3col">
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">Men</div>
+      <a class="mega-sublink active" data-panel="mc" data-img="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=460&q=80" data-tag="Men's Fashion" data-title="The Men's Clothing Edit">Clothing <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ms" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=460&q=80" data-tag="Men's Shoes" data-title="Walk With Confidence">Shoes <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="mb" data-img="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=460&q=80" data-tag="Men's Bags" data-title="Carry It In Style">Bags <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ma" data-img="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=460&q=80" data-tag="Men's Accessories" data-title="The Details That Define You">Accessories <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+    <div class="mega-panels">
+      <div class="mega-panel active" id="mc">
+        <div class="mega-panel-head">Shop Clothing</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/40/100/100" alt=""></div><span class="mega-tile-name">Suits &amp; Blazers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/41/100/100" alt=""></div><span class="mega-tile-name">Shirts &amp; Polos</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/42/100/100" alt=""></div><span class="mega-tile-name">T-Shirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/43/100/100" alt=""></div><span class="mega-tile-name">Trousers &amp; Jeans</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/44/100/100" alt=""></div><span class="mega-tile-name">Knitwear</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/45/100/100" alt=""></div><span class="mega-tile-name">Outerwear</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="ms">
+        <div class="mega-panel-head">Shop Shoes</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/46/100/100" alt=""></div><span class="mega-tile-name">Trainers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/47/100/100" alt=""></div><span class="mega-tile-name">Oxford &amp; Derbies</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/48/100/100" alt=""></div><span class="mega-tile-name">Loafers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/49/100/100" alt=""></div><span class="mega-tile-name">Boots</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="mb">
+        <div class="mega-panel-head">Shop Bags</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/50/100/100" alt=""></div><span class="mega-tile-name">Backpacks</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/51/100/100" alt=""></div><span class="mega-tile-name">Briefcases</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/52/100/100" alt=""></div><span class="mega-tile-name">Totes &amp; Shoppers</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="ma">
+        <div class="mega-panel-head">Shop Accessories</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/53/100/100" alt=""></div><span class="mega-tile-name">Watches</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/54/100/100" alt=""></div><span class="mega-tile-name">Sunglasses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/55/100/100" alt=""></div><span class="mega-tile-name">Belts &amp; Wallets</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+    </div>
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="mfeat-img" src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="mfeat-tag">Men's Fashion</div>
+        <div class="mega-feat-title" id="mfeat-title">The Men's Clothing Edit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BEAUTY ══ -->
+<div class="mega" id="mega-beauty">
+  <div class="mega-3col">
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">Beauty</div>
+      <a class="mega-sublink active" data-panel="bsk" data-img="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=460&q=80" data-tag="Skincare" data-title="Science Meets Luxury">Skincare <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="bmk" data-img="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=460&q=80" data-tag="Make Up" data-title="Define Your Beauty">Make Up <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="bfr" data-img="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=460&q=80" data-tag="Fine Fragrance" data-title="Your Signature Scent">Fragrance <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="bhb" data-img="https://images.unsplash.com/photo-1526413425852-fe4b3bb29628?w=460&q=80" data-tag="Hair &amp; Body" data-title="Indulge In Luxury">Hair &amp; Body <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+    <div class="mega-panels">
+      <div class="mega-panel active" id="bsk">
+        <div class="mega-panel-head">Shop Skincare</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/56/100/100" alt=""></div><span class="mega-tile-name">Moisturisers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/57/100/100" alt=""></div><span class="mega-tile-name">Serums &amp; Treatments</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/58/100/100" alt=""></div><span class="mega-tile-name">Cleansers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/59/100/100" alt=""></div><span class="mega-tile-name">Eye Care</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/60/100/100" alt=""></div><span class="mega-tile-name">Sun Protection</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="bmk">
+        <div class="mega-panel-head">Shop Make Up</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/61/100/100" alt=""></div><span class="mega-tile-name">Foundation</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/62/100/100" alt=""></div><span class="mega-tile-name">Lips</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/63/100/100" alt=""></div><span class="mega-tile-name">Eyes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/64/100/100" alt=""></div><span class="mega-tile-name">Face &amp; Blush</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="bfr">
+        <div class="mega-panel-head">Shop Fragrance</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/65/100/100" alt=""></div><span class="mega-tile-name">Women's Fragrance</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/66/100/100" alt=""></div><span class="mega-tile-name">Men's Fragrance</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/67/100/100" alt=""></div><span class="mega-tile-name">Candles &amp; Home</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/68/100/100" alt=""></div><span class="mega-tile-name">Gift Sets</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="bhb">
+        <div class="mega-panel-head">Shop Hair &amp; Body</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/69/100/100" alt=""></div><span class="mega-tile-name">Hair Care</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/70/100/100" alt=""></div><span class="mega-tile-name">Body &amp; Bath</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/71/100/100" alt=""></div><span class="mega-tile-name">Nail Care</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+    </div>
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="bfeat-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="bfeat-tag">Skincare</div>
+        <div class="mega-feat-title" id="bfeat-title">Science Meets Luxury</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ JEWELLERY ══ -->
+<div class="mega" id="mega-jewellery">
+  <div class="mega-3col">
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">Jewellery</div>
+      <a class="mega-sublink active" data-panel="jfj" data-img="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=460&q=80" data-tag="Fine Jewellery" data-title="Crafted for Eternity">Fine Jewellery <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="jwt" data-img="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=460&q=80" data-tag="Timepieces" data-title="Time, Elevated">Watches <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="jbr" data-img="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=460&q=80" data-tag="Jewellery Brands" data-title="The World's Finest Houses">Brands <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+    <div class="mega-panels">
+      <div class="mega-panel active" id="jfj">
+        <div class="mega-panel-head">Shop Fine Jewellery</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/72/100/100" alt=""></div><span class="mega-tile-name">Necklaces</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/73/100/100" alt=""></div><span class="mega-tile-name">Rings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/74/100/100" alt=""></div><span class="mega-tile-name">Earrings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/75/100/100" alt=""></div><span class="mega-tile-name">Bracelets &amp; Bangles</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/76/100/100" alt=""></div><span class="mega-tile-name">Pendants</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="jwt">
+        <div class="mega-panel-head">Shop Watches</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/77/100/100" alt=""></div><span class="mega-tile-name">Women's Watches</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/78/100/100" alt=""></div><span class="mega-tile-name">Men's Watches</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/79/100/100" alt=""></div><span class="mega-tile-name">Luxury Sport</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="jbr">
+        <div class="mega-panel-head">Jewellery Brands</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb mega-thumb-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div><span class="mega-tile-name">Cartier</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb mega-thumb-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div><span class="mega-tile-name">Bulgari</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb mega-thumb-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div><span class="mega-tile-name">Chopard</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb mega-thumb-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div><span class="mega-tile-name">Van Cleef &amp; Arpels</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb mega-thumb-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div><span class="mega-tile-name">David Yurman</span></a>
+        </div>
+        <a href="#" class="mega-viewall">All Brands <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+    </div>
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="jfeat-img" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="jfeat-tag">Fine Jewellery</div>
+        <div class="mega-feat-title" id="jfeat-title">Crafted for Eternity</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ KIDS ══ -->
+<div class="mega" id="mega-kids">
+  <div class="mega-3col">
+    <div class="mega-subnav">
+      <div class="mega-subnav-head">Kids</div>
+      <a class="mega-sublink active" data-panel="kbb" data-img="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=460&q=80" data-tag="Baby" data-title="Baby Essentials 0–2 Yrs">Baby (0–2 Yrs) <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="kg28" data-img="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=460&q=80" data-tag="Girls 2–8 Yrs" data-title="Girls Fashion 2–8 Years">Girls (2–8 Yrs) <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="kb28" data-img="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=460&q=80" data-tag="Boys 2–8 Yrs" data-title="Boys Fashion 2–8 Years">Boys (2–8 Yrs) <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="kg816" data-img="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=460&q=80" data-tag="Girls 8–16 Yrs" data-title="Girls Fashion 8–16 Years">Girls (8–16 Yrs) <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="kb816" data-img="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=460&q=80" data-tag="Boys 8–16 Yrs" data-title="Boys Fashion 8–16 Years">Boys (8–16 Yrs) <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+      <a class="mega-sublink" data-panel="ksh" data-img="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=460&q=80" data-tag="Kids Shoes" data-title="Shoes &amp; Footwear">Shoes <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></a>
+    </div>
+    <div class="mega-panels">
+      <div class="mega-panel active" id="kbb">
+        <div class="mega-panel-head">Baby 0–2 Yrs</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/80/100/100" alt=""></div><span class="mega-tile-name">Baby Girls</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/81/100/100" alt=""></div><span class="mega-tile-name">Baby Boys</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/82/100/100" alt=""></div><span class="mega-tile-name">Bodysuits</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/83/100/100" alt=""></div><span class="mega-tile-name">Sets &amp; Multipacks</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="kg28">
+        <div class="mega-panel-head">Girls 2–8 Yrs</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/84/100/100" alt=""></div><span class="mega-tile-name">Dresses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/85/100/100" alt=""></div><span class="mega-tile-name">Tops</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/86/100/100" alt=""></div><span class="mega-tile-name">Trousers &amp; Leggings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/87/100/100" alt=""></div><span class="mega-tile-name">Sets &amp; Multipacks</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="kb28">
+        <div class="mega-panel-head">Boys 2–8 Yrs</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/88/100/100" alt=""></div><span class="mega-tile-name">T-Shirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/89/100/100" alt=""></div><span class="mega-tile-name">Joggers &amp; Trousers</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/90/100/100" alt=""></div><span class="mega-tile-name">Sets &amp; Multipacks</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="kg816">
+        <div class="mega-panel-head">Girls 8–16 Yrs</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/91/100/100" alt=""></div><span class="mega-tile-name">Dresses</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/92/100/100" alt=""></div><span class="mega-tile-name">Tops &amp; T-Shirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/93/100/100" alt=""></div><span class="mega-tile-name">Jeans &amp; Leggings</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/94/100/100" alt=""></div><span class="mega-tile-name">School</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="kb816">
+        <div class="mega-panel-head">Boys 8–16 Yrs</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/95/100/100" alt=""></div><span class="mega-tile-name">T-Shirts</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/96/100/100" alt=""></div><span class="mega-tile-name">Joggers &amp; Jeans</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/97/100/100" alt=""></div><span class="mega-tile-name">School</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+      <div class="mega-panel" id="ksh">
+        <div class="mega-panel-head">Kids Shoes</div>
+        <div class="mega-items">
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/98/100/100" alt=""></div><span class="mega-tile-name">Girls Shoes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/99/100/100" alt=""></div><span class="mega-tile-name">Boys Shoes</span></a>
+          <a href="#" class="mega-tile"><div class="mega-thumb"><img src="https://picsum.photos/seed/100/100/100" alt=""></div><span class="mega-tile-name">Baby Shoes</span></a>
+        </div>
+        <a href="#" class="mega-viewall">View All <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      </div>
+    </div>
+    <div class="mega-feat-col">
+      <a href="#" class="mega-feat-img"><img id="kfeat-img" src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=460&q=80" alt=""></a>
+      <div class="mega-feat-info">
+        <div class="mega-feat-tag" id="kfeat-tag">Baby</div>
+        <div class="mega-feat-title" id="kfeat-title">Baby Essentials 0–2 Yrs</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="hero-slider" id="heroSlider">
+
+    <!-- Slide 1 — Women -->
+    <div class="hs-slide active">
+        <div class="hs-bg"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1800&q=85" alt="" fetchpriority="high"></div>
+        <div class="hs-overlay"></div>
+        <div class="hs-content">
+            <p class="hs-kicker">New Season — Women</p>
+            <h1 class="hs-h1">Refined taste.<br><em>Uncompromising</em><br>quality.</h1>
+            <div class="hs-ctas">
+                <a href="#" class="btn-fill">Shop Women <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+                <a href="#" class="btn-line">View Lookbook</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2 — Men -->
+    <div class="hs-slide">
+        <div class="hs-bg"><img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=1800&q=85" alt=""></div>
+        <div class="hs-overlay"></div>
+        <div class="hs-content">
+            <p class="hs-kicker">New Season — Men</p>
+            <h1 class="hs-h1">Dressed with<br><em>purpose.</em></h1>
+            <div class="hs-ctas">
+                <a href="#" class="btn-fill">Shop Men <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+                <a href="#" class="btn-line">Explore Brands</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3 — Beauty -->
+    <div class="hs-slide">
+        <div class="hs-bg"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1800&q=85" alt=""></div>
+        <div class="hs-overlay"></div>
+        <div class="hs-content">
+            <p class="hs-kicker">Prestige Beauty</p>
+            <h1 class="hs-h1">Science meets<br><em>luxury</em><br>skincare.</h1>
+            <div class="hs-ctas">
+                <a href="#" class="btn-fill">Shop Beauty <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+                <a href="#" class="btn-line">New Arrivals</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4 — Jewellery -->
+    <div class="hs-slide">
+        <div class="hs-bg"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1800&q=85" alt=""></div>
+        <div class="hs-overlay"></div>
+        <div class="hs-content">
+            <p class="hs-kicker">Fine Jewellery</p>
+            <h1 class="hs-h1">Crafted for<br><em>eternity.</em></h1>
+            <div class="hs-ctas">
+                <a href="#" class="btn-fill">Shop Jewellery <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+                <a href="#" class="btn-line">View Collections</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arrows -->
+    <button class="hs-arrow hs-prev" aria-label="Previous slide">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    </button>
+    <button class="hs-arrow hs-next" aria-label="Next slide">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="hs-dots">
+        <button class="hs-dot active" aria-label="Slide 1"></button>
+        <button class="hs-dot" aria-label="Slide 2"></button>
+        <button class="hs-dot" aria-label="Slide 3"></button>
+        <button class="hs-dot" aria-label="Slide 4"></button>
+    </div>
+
+</section>
+
+<!-- ── BRAND TICKER ──────────────────────────────────────────── -->
+<div class="marquee-bar">
+    <div class="marquee-inner">
+        <div class="marquee-item">Valentino <span>·</span> Prada <span>·</span> Bottega Veneta <span>·</span> Loewe <span>·</span> Celine <span>·</span> The Row <span>·</span> Loro Piana <span>·</span> Brunello Cucinelli <span>·</span> Toteme <span>·</span> Cartier <span>·</span> La Mer <span>·</span> Charlotte Tilbury <span>·</span> Byredo <span>·</span> Diptyque <span>·</span></div>
+        <div class="marquee-item">Valentino <span>·</span> Prada <span>·</span> Bottega Veneta <span>·</span> Loewe <span>·</span> Celine <span>·</span> The Row <span>·</span> Loro Piana <span>·</span> Brunello Cucinelli <span>·</span> Toteme <span>·</span> Cartier <span>·</span> La Mer <span>·</span> Charlotte Tilbury <span>·</span> Byredo <span>·</span> Diptyque <span>·</span></div>
+    </div>
+</div>
+
+<!-- ── CATEGORIES ─────────────────────────────────────────────── -->
+<section class="cat-slider-section">
+  <div class="cat-slider-head">
+    <span class="eyebrow">Explore</span>
+    <h2 style="font-family:var(--ff-serif);font-size:2rem;font-weight:400;color:var(--text);margin:8px 0 0;">Our Categories</h2>
+  </div>
+  <div class="cat-slider-outer">
+    <button class="cat-arr cat-prev" id="catPrev" aria-label="Previous">
+      <svg viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1">
+        <line x1="44" y1="6" x2="0" y2="6"/>
+        <polyline points="7,1 0,6 7,11" stroke-linejoin="miter"/>
+      </svg>
+    </button>
+    <div class="cat-slider-track">
+      <div class="cat-slider-inner" id="catSliderInner">
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=480&q=80" alt="Women" loading="lazy"></div>
+          <span class="cat-slide-name">Women</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=480&q=80" alt="Men" loading="lazy"></div>
+          <span class="cat-slide-name">Men</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=480&q=80" alt="Beauty" loading="lazy"></div>
+          <span class="cat-slide-name">Beauty</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=480&q=80" alt="Jewellery" loading="lazy"></div>
+          <span class="cat-slide-name">Jewellery</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=480&q=80" alt="Kids" loading="lazy"></div>
+          <span class="cat-slide-name">Kids</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=480&q=80" alt="Bags" loading="lazy"></div>
+          <span class="cat-slide-name">Bags</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=480&q=80" alt="Shoes" loading="lazy"></div>
+          <span class="cat-slide-name">Shoes</span>
+        </a>
+        <a href="#" class="cat-slide">
+          <div class="cat-slide-img"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=480&q=80" alt="New In" loading="lazy"></div>
+          <span class="cat-slide-name">New In</span>
+        </a>
+      </div>
+    </div>
+    <button class="cat-arr cat-next" id="catNext" aria-label="Next">
+      <svg viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1">
+        <line x1="0" y1="6" x2="44" y2="6"/>
+        <polyline points="37,1 44,6 37,11" stroke-linejoin="miter"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+
+<!-- ── NEW ARRIVALS ───────────────────────────────────────────── -->
+<section class="arrivals-section">
+    <div class="arrivals-header reveal">
+        <div class="arrivals-header-left">
+            <span class="eyebrow">New In</span>
+            <h2 class="arrivals-title">Just <em>Arrived</em></h2>
+        </div>
+        <div class="arrivals-header-right">
+            <div class="arrivals-filters">
+                <button class="arrivals-filter on">All</button>
+                <button class="arrivals-filter">Women</button>
+                <button class="arrivals-filter">Men</button>
+                <button class="arrivals-filter">Kids</button>
+            </div>
+            <div class="arr-nav">
+                <button class="arr-btn" id="arrPrev" aria-label="Previous">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                </button>
+                <button class="arr-btn" id="arrNext" aria-label="Next">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="arrivals-slider-outer">
+      <div class="arrivals-strip-wrap">
+        <div class="arrivals-strip" id="arrivalsStrip">
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="assets/product1.png" alt="Dress" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#1c1916;"></div><div class="swatch" style="background:#c9b38a;"></div><div class="swatch" style="background:#6e2438;"></div></div>
+                <span class="prod-badge">New In</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">Valentino</div>
+                <div class="prod-name">Crepe Couture Silk Midi Dress</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>34</span><span>36</span><span>38</span><span>40</span><span>42</span></div>
+                  <div class="prod-price">QAR 8,900</div>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="assets/product2.png" alt="Bag" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#5c3d2e;"></div><div class="swatch" style="background:#1c1916;"></div><div class="swatch" style="background:#c9b38a;"></div></div>
+                <span class="prod-badge">Exclusive</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">Bottega Veneta</div>
+                <div class="prod-name">Intreccio Woven Leather Tote</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>XS</span><span>S</span><span>M</span><span>L</span></div>
+                  <div class="prod-price">QAR 24,500</div>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="assets/product4.png" alt="Shoes" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#1c1916;"></div><div class="swatch" style="background:#e8d5c0;"></div></div>
+                <span class="prod-badge prod-badge--sale">Sale</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">Jimmy Choo</div>
+                <div class="prod-name">Azia 95 Patent Leather Slingback</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span></div>
+                  <div class="prod-price"><s>QAR 3,200</s><span class="sale">QAR 2,240</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="assets/product2.png" alt="Skincare" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#e8d5c0;"></div><div class="swatch" style="background:#f5f0ea;"></div></div>
+                <span class="prod-badge">New In</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">La Mer</div>
+                <div class="prod-name">Crème de la Mer Moisturising Cream 60ml</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>30ml</span><span>60ml</span><span>100ml</span></div>
+                  <div class="prod-price">QAR 1,650</div>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=480&q=80" alt="Fashion" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#fff;border:1px solid #ccc;"></div><div class="swatch" style="background:#1c1916;"></div><div class="swatch" style="background:#6e2438;"></div></div>
+                <span class="prod-badge">New In</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">Celine</div>
+                <div class="prod-name">Triomphe Silk Blouse</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>34</span><span>36</span><span>38</span><span>40</span><span>42</span></div>
+                  <div class="prod-price">QAR 6,200</div>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card">
+              <div class="prod-img-wrap">
+                <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=480&q=80" alt="Men's Suit" loading="lazy">
+                <div class="prod-swatches"><div class="swatch" style="background:#1c1916;"></div><div class="swatch" style="background:#4a4a4a;"></div></div>
+                <span class="prod-badge">New In</span>
+                <button class="prod-wish" aria-label="Wishlist"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
+                <button class="prod-quick" aria-label="Add to cart"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg></button>
+              </div>
+              <div class="prod-info">
+                <div class="prod-brand">Brunello Cucinelli</div>
+                <div class="prod-name">Virgin Wool Tailored Suit</div>
+                <div class="prod-foot">
+                  <div class="prod-sizes"><span>46</span><span>48</span><span>50</span><span>52</span></div>
+                  <div class="prod-price">QAR 18,500</div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+<!-- ── SHOP THE SET ──────────────────────────────────────────── -->
+<section class="sets-section">
+    <div class="sets-editorial">
+        <img id="setsEditorialImg" src="assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp" alt="Editorial Look">
+    </div>
+    <div class="sets-panel">
+        <div class="sets-content" id="setsContent">
+            <div class="sets-title" id="setsTitle">Material Difference</div>
+            <div class="sets-grid" id="setsGrid">
+                <a href="#" class="set-item">
+                    <div class="set-item-img"><img src="assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp" alt="Inara Top"></div>
+                    <div class="set-item-name">Inara Top</div>
+                </a>
+                <a href="#" class="set-item">
+                    <div class="set-item-img"><img src="assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp" alt="Mini Emma Bag"></div>
+                    <div class="set-item-name">Mini Emma Bag</div>
+                </a>
+                <a href="#" class="set-item">
+                    <div class="set-item-img"><img src="assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp" alt="Marlene Pump"></div>
+                    <div class="set-item-name">Marlene Pump</div>
+                </a>
+                <a href="#" class="set-item">
+                    <div class="set-item-img"><img src="assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp" alt="Auggie Short"></div>
+                    <div class="set-item-name">Auggie Short</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav class="sets-nav">
+        <button class="sets-arrow" id="setsPrev" aria-label="Previous set">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        </button>
+        <button class="sets-arrow" id="setsNext" aria-label="Next set">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+    </nav>
+</section>
+
+<!-- ── SHOP OUR PRODUCTS ─────────────────────────────────────── -->
+<section class="shop-products-section">
+    <div class="shop-products-photo">
+        <img src="assets/setsi.png" alt="Shop Our Products">
+    </div>
+    <div class="shop-products-panel">
+        <div class="shop-products-top">
+            <div class="shop-products-left">
+                <span class="shop-label-vertical">Shop Our</span>
+                <h2 class="shop-products-title">Shop by look</h2>
+            </div>
+            <div class="shop-top-line"></div>
+            <div class="shop-prod-arrows">
+                <button class="shop-arr" id="shopPrev" aria-label="Previous">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                </button>
+                <button class="shop-arr" id="shopNext" aria-label="Next">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="shop-prod-list" id="shopProdList">
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp" alt="Mini Emma Bag"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#8b2635;"></div>
+                        <div class="shop-prod-swatch" style="background:#c9a87c;"></div>
+                    </div>
+                    <div class="shop-prod-name">Mini Emma Bag</div>
+                    <div class="shop-prod-sub">Ruby Multi</div>
+                    <div class="shop-prod-price">QAR 3,450</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp" alt="Marlene Pump"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#c4a882;"></div>
+                        <div class="shop-prod-swatch" style="background:#1c1916;"></div>
+                    </div>
+                    <div class="shop-prod-name">Marlene Pump 50</div>
+                    <div class="shop-prod-sub">Taupe</div>
+                    <div class="shop-prod-price">QAR 2,190</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp" alt="Inara Top"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#d4e8d4;"></div>
+                        <div class="shop-prod-swatch" style="background:#f5e6d3;"></div>
+                    </div>
+                    <div class="shop-prod-name">Inara Top</div>
+                    <div class="shop-prod-sub">Ice Green</div>
+                    <div class="shop-prod-price">QAR 1,290</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp" alt="Auggie Short"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#4a5240;"></div>
+                        <div class="shop-prod-swatch" style="background:#8b7355;"></div>
+                    </div>
+                    <div class="shop-prod-name">Auggie Short</div>
+                    <div class="shop-prod-sub">Dark Olive</div>
+                    <div class="shop-prod-price">QAR 890</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp" alt="Tote Bag"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#c0bdb8;"></div>
+                        <div class="shop-prod-swatch" style="background:#1c1916;"></div>
+                    </div>
+                    <div class="shop-prod-name">Tote Bag Classic</div>
+                    <div class="shop-prod-sub">Leather</div>
+                    <div class="shop-prod-price">QAR 4,200</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp" alt="Snake Heel"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#b8a090;"></div>
+                        <div class="shop-prod-swatch" style="background:#2c2c2c;"></div>
+                    </div>
+                    <div class="shop-prod-name">Snake Print Heel</div>
+                    <div class="shop-prod-sub">Taupe / Black</div>
+                    <div class="shop-prod-price">QAR 1,890</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp" alt="Silk Top"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#e8f0e8;"></div>
+                        <div class="shop-prod-swatch" style="background:#f0e0d0;"></div>
+                    </div>
+                    <div class="shop-prod-name">Silk Ruched Top</div>
+                    <div class="shop-prod-sub">Ivory</div>
+                    <div class="shop-prod-price">QAR 1,450</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp" alt="Tailored Short"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#3d3d2e;"></div>
+                        <div class="shop-prod-swatch" style="background:#c8b89a;"></div>
+                    </div>
+                    <div class="shop-prod-name">Tailored Bermuda Short</div>
+                    <div class="shop-prod-sub">Olive / Sand</div>
+                    <div class="shop-prod-price">QAR 990</div>
+                </div>
+            </a>
+            <a href="#" class="shop-prod-item">
+                <div class="shop-prod-thumb"><img src="assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp" alt="Patchwork Bag"></div>
+                <div class="shop-prod-meta">
+                    <div class="shop-prod-swatches">
+                        <div class="shop-prod-swatch" style="background:#8b2635;"></div>
+                        <div class="shop-prod-swatch" style="background:#2c3e50;"></div>
+                    </div>
+                    <div class="shop-prod-name">Patchwork Mini Bag</div>
+                    <div class="shop-prod-sub">Multi</div>
+                    <div class="shop-prod-price">QAR 2,890</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── FASHION LOOKUP ──────────────────────────────────────────── -->
+<section class="fashion-lookup-section">
+    <div class="fashion-lookup-left">
+        <div class="fashion-lookup-editorial">
+            <img id="fashionEditImg" src="assets/setsi.png" alt="Editorial">
+        </div>
+        <div class="fashion-lookup-bottom">
+            <div class="fashion-lookup-title" id="fashionCatTitle">Light Fashion Wear</div>
+            <div class="fashion-lookup-cats">
+                <button class="fcat-link active" data-cat="jeans">Jeans</button>
+                <span class="fcat-sep">|</span>
+                <button class="fcat-link" data-cat="shirts">Shirts</button>
+            </div>
+        </div>
+    </div>
+    <div class="fashion-lookup-right">
+        <div class="fashion-prod-display">
+            <div class="fashion-prod-img-wrap">
+                <img id="fashionProdImg" src="assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp" alt="">
+            </div>
+            <div class="fashion-prod-name" id="fashionProdName">Auggie Short</div>
+            <div class="fashion-prod-price" id="fashionProdPrice">Price QAR 890</div>
+            <div class="fashion-prod-dots" id="fashionDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FASHION LOOKUP 2 (mirrored) ───────────────────────────── -->
+<section class="fashion-lookup-section" style="margin-top: 4px;">
+    <div class="fashion-lookup-right">
+        <div class="fashion-prod-display">
+            <div class="fashion-prod-img-wrap">
+                <img id="fashionProdImg2" src="assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp" alt="">
+            </div>
+            <div class="fashion-prod-name" id="fashionProdName2">Inara Top</div>
+            <div class="fashion-prod-price" id="fashionProdPrice2">Price QAR 1,290</div>
+            <div class="fashion-prod-dots" id="fashionDots2"></div>
+        </div>
+    </div>
+    <div class="fashion-lookup-left">
+        <div class="fashion-lookup-editorial">
+            <img id="fashionEditImg2" src="assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp" alt="Editorial">
+        </div>
+        <div class="fashion-lookup-bottom">
+            <div class="fashion-lookup-title" id="fashionCatTitle2">Dark Fashion Wear</div>
+            <div class="fashion-lookup-cats">
+                <button class="fcat-link2 active" data-cat="tops">Tops</button>
+                <span class="fcat-sep">|</span>
+                <button class="fcat-link2" data-cat="accessories">Accessories</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ── SERVICES ───────────────────────────────────────────────── -->
+<div style="border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+    <div class="services-row">
+        <div class="service reveal">
+            <div class="service-icon-wrap">
+                <svg class="service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.25">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/>
+                </svg>
+            </div>
+            <div class="service-title">Free Delivery</div>
+            <p class="service-desc">Complimentary worldwide shipping on all orders over QAR 500. Same-day delivery available in Doha.</p>
+        </div>
+        <div class="service reveal">
+            <div class="service-icon-wrap">
+                <svg class="service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.25">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                </svg>
+            </div>
+            <div class="service-title">Personal Styling</div>
+            <p class="service-desc">One-to-one styling sessions with our expert team, in-store at Mall of Qatar or virtually.</p>
+        </div>
+        <div class="service reveal">
+            <div class="service-icon-wrap">
+                <svg class="service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.25">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+                </svg>
+            </div>
+            <div class="service-title">Luxury Gifting</div>
+            <p class="service-desc">Every order arrives in our signature packaging. Personalised notes and gift wrapping available.</p>
+        </div>
+        <div class="service reveal">
+            <div class="service-icon-wrap">
+                <svg class="service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.25">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                </svg>
+            </div>
+            <div class="service-title">Authenticity Guaranteed</div>
+            <p class="service-desc">Every piece sourced directly from the brand or authorised distributor, fully certified.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="f-logo">
+            <img src="assets/blue-salon-logo-horizontal-01.svg" alt="Blue Salon">
+            <p class="f-tagline">Qatar's premier destination for luxury fashion, jewellery, beauty and lifestyle. Visit us at Mall of Qatar &amp; Villaggio.</p>
+            <div class="f-socials">
+                <a href="#" class="f-social" aria-label="Instagram">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.5"/><path stroke-linecap="round" stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/></svg>
+                </a>
+                <a href="#" class="f-social" aria-label="TikTok">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+                </a>
+                <a href="#" class="f-social" aria-label="Pinterest">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.73 1.201-5.089 1.201-5.089s-.307-.614-.307-1.524c0-1.428.829-2.497 1.859-2.497.877 0 1.302.659 1.302 1.449 0 .883-.562 2.205-.854 3.43-.243 1.026.513 1.862 1.523 1.862 1.827 0 3.233-1.926 3.233-4.706 0-2.459-1.768-4.179-4.29-4.179-2.922 0-4.636 2.191-4.636 4.456 0 .882.339 1.827.763 2.344a.306.306 0 01.071.292c-.078.322-.251 1.025-.285 1.168-.046.187-.152.226-.351.136-1.249-.582-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                </a>
+                <a href="#" class="f-social" aria-label="YouTube">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12c0 1.2-.007 2.4-.038 3.6a4.126 4.126 0 01-3.36 4.038 46.07 46.07 0 01-9.204 0 4.125 4.125 0 01-3.36-4.038C5.007 14.4 5 13.2 5 12c0-1.2.007-2.4.038-3.6a4.126 4.126 0 013.36-4.038 46.07 46.07 0 019.204 0 4.125 4.125 0 013.36 4.038C20.993 9.6 21 10.8 21 12z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="f-col-title">Shop</div>
+            <div class="f-links">
+                <a href="#">New Arrivals</a>
+                <a href="#">Women</a>
+                <a href="#">Men</a>
+                <a href="#">Beauty</a>
+                <a href="#">Jewellery</a>
+                <a href="#">Kids</a>
+                <a href="#" style="color:#b52828;">Sale</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="f-col-title">Discover</div>
+            <div class="f-links">
+                <a href="#">Brands A–Z</a>
+                <a href="#">Lookbook</a>
+                <a href="#">Editorials</a>
+                <a href="#">Gift Guide</a>
+                <a href="#">Sustainability</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="f-col-title">Services</div>
+            <div class="f-links">
+                <a href="#">Personal Styling</a>
+                <a href="#">Gift Wrapping</a>
+                <a href="#">Alterations</a>
+                <a href="#">Store Locations</a>
+                <a href="#">Book an Appointment</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="f-col-title">Help</div>
+            <div class="f-links">
+                <a href="#">Track Order</a>
+                <a href="#">Returns</a>
+                <a href="#">Shipping Info</a>
+                <a href="#">Size Guide</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="f-copy">&copy; 2025 Blue Salon. All rights reserved. Qatar.</p>
+        <div class="f-pay">
+            <div class="pay-tag">Visa</div>
+            <div class="pay-tag">Mastercard</div>
+            <div class="pay-tag">Amex</div>
+            <div class="pay-tag">Apple Pay</div>
+            <div class="pay-tag">QPAY</div>
+        </div>
+        <div class="f-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* ── MEGA MENU ─ */
+    const navItems = document.querySelectorAll('.nav-item[data-mega]');
+    let closeTimer = null;
+
+    function openMega(id) {
+        // close any open mega first
+        document.querySelectorAll('.mega.open').forEach(m => {
+            if (m.id !== 'mega-' + id) m.classList.remove('open');
+        });
+        const panel = document.getElementById('mega-' + id);
+        if (panel) panel.classList.add('open');
+    }
+
+    function closeMega() {
+        document.querySelectorAll('.mega.open').forEach(m => m.classList.remove('open'));
+    }
+
+    navItems.forEach(item => {
+        const id = item.dataset.mega;
+        const panel = document.getElementById('mega-' + id);
+
+        item.addEventListener('mouseenter', () => {
+            clearTimeout(closeTimer);
+            openMega(id);
+        });
+        item.addEventListener('mouseleave', () => {
+            closeTimer = setTimeout(closeMega, 120);
+        });
+
+        if (panel) {
+            panel.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+            panel.addEventListener('mouseleave', () => {
+                closeTimer = setTimeout(closeMega, 120);
+            });
+        }
+    });
+
+    /* ── MEGA THUMB IMAGE FALLBACK ─ */
+    document.querySelectorAll('.mega-thumb img').forEach((img, i) => {
+        const fallback = () => {
+            if (!img.dataset.fb) {
+                img.dataset.fb = '1';
+                img.src = 'https://picsum.photos/seed/' + (i + 200) + '/100/100';
+            }
+        };
+        img.addEventListener('error', fallback);
+        if (img.complete && img.naturalWidth === 0) fallback();
+    });
+
+    /* ── MEGA SUB-LEVEL SWITCHER (L2 → L3) ─ */
+    document.querySelectorAll('.mega-sublink').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            const panelId = link.dataset.panel;
+            const mega    = link.closest('.mega');
+            // switch active sub-link
+            mega.querySelectorAll('.mega-sublink').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            // switch active panel
+            mega.querySelectorAll('.mega-panel').forEach(p => p.classList.remove('active'));
+            const target = mega.querySelector('#' + panelId);
+            if (target) target.classList.add('active');
+            // update feature image + caption
+            const megaId = mega.id.replace('mega-', '').charAt(0); // w / m / b / j / k
+            const img  = mega.querySelector('.mega-feat-img img');
+            const tag  = mega.querySelector('.mega-feat-tag');
+            const ttl  = mega.querySelector('.mega-feat-title');
+            if (img && link.dataset.img)   img.src          = link.dataset.img;
+            if (tag && link.dataset.tag)   tag.innerHTML    = link.dataset.tag;
+            if (ttl && link.dataset.title) ttl.textContent  = link.dataset.title;
+        });
+    });
+
+    // close mega on scroll or click outside
+    window.addEventListener('scroll', closeMega, { passive: true });
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.nav-item') && !e.target.closest('.mega')) closeMega();
+    });
+
+    /* ── SCROLL EFFECTS ─ */
+    const scrollBar = document.getElementById('scrollBar');
+    const header    = document.getElementById('siteHeader');
+    const btt       = document.getElementById('btt');
+
+    window.addEventListener('scroll', () => {
+        const sy  = window.scrollY;
+        const max = document.body.scrollHeight - window.innerHeight;
+        scrollBar.style.width = (sy / max * 100) + '%';
+        header.classList.toggle('raised', sy > 60);
+        btt.classList.toggle('show', sy > 500);
+    });
+
+    /* ── HERO SLIDER ─ */
+    (function() {
+        const slides = Array.from(document.querySelectorAll('.hs-slide'));
+        const dots   = Array.from(document.querySelectorAll('.hs-dot'));
+        let current = 0, timer = null;
+
+        function goTo(n) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+        }
+        function next() { goTo(current + 1); }
+        function start() { timer = setInterval(next, 5000); }
+        function reset() { clearInterval(timer); start(); }
+
+        document.querySelector('.hs-next').addEventListener('click', () => { next(); reset(); });
+        document.querySelector('.hs-prev').addEventListener('click', () => { goTo(current - 1); reset(); });
+        dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); reset(); }));
+
+        start();
+    })();
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMobileNav();
+    });
+
+    /* ── MOBILE NAV ─ */
+    function openMobileNav() {
+        document.getElementById('mobileNav').classList.add('open');
+        document.getElementById('navScrim').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navScrim').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    /* ── LANGUAGE SWITCHER ─ */
+    function toggleLang() {
+        document.getElementById('langSwitcher').classList.toggle('open');
+    }
+    function setLang(code, el) {
+        document.getElementById('langLabel').textContent = code;
+        document.querySelectorAll('.lang-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('langSwitcher').classList.remove('open');
+    }
+    document.addEventListener('click', e => {
+        if (!e.target.closest('#langSwitcher')) {
+            document.getElementById('langSwitcher').classList.remove('open');
+        }
+    });
+
+    /* ── PRODUCT FILTER TABS ─ */
+    document.querySelectorAll('.s-filter').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.s-filter').forEach(b => b.classList.remove('on'));
+            this.classList.add('on');
+        });
+    });
+
+    /* ── REVEAL ON SCROLL ─ */
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('in'), i * 60);
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Category slider
+    (function() {
+        const inner = document.getElementById('catSliderInner');
+        if (!inner) return;
+        const slides = Array.from(inner.querySelectorAll('.cat-slide'));
+        let current = 0;
+        function getPerPage() {
+            return window.innerWidth < 600 ? 1 : 2;
+        }
+        function update() {
+            const perPage = getPerPage();
+            const max = Math.max(0, slides.length - perPage);
+            current = Math.min(current, max);
+            const slideEl = slides[0];
+            const gap = 120;
+            const offset = current * (slideEl.offsetWidth + gap);
+            inner.style.transform = 'translateX(-' + offset + 'px)';
+            document.getElementById('catPrev').style.opacity = current === 0 ? '0.35' : '1';
+            document.getElementById('catNext').style.opacity = current >= max ? '0.35' : '1';
+        }
+        document.getElementById('catPrev').addEventListener('click', function() {
+            if (current > 0) { current--; update(); }
+        });
+        document.getElementById('catNext').addEventListener('click', function() {
+            const perPage = getPerPage();
+            if (current < slides.length - perPage) { current++; update(); }
+        });
+        window.addEventListener('resize', function() { current = 0; update(); });
+        update();
+    })();
+
+    // Arrivals slider
+    (function() {
+        var wrap = document.querySelector('.arrivals-strip-wrap');
+        var strip = document.getElementById('arrivalsStrip');
+        if (!strip || !wrap) return;
+        var cards = Array.from(strip.querySelectorAll('.prod-card'));
+        var current = 0;
+
+        function getPerPage() {
+            return window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : window.innerWidth < 1200 ? 3 : 4;
+        }
+
+        function slide() {
+            var perPage = getPerPage();
+            var max = Math.max(0, cards.length - perPage);
+            if (current > max) current = max;
+            // Card width comes from CSS (33.333% - 16px of wrap)
+            var cardW = cards[0].offsetWidth;
+            var gap = 24;
+            var offset = current * (cardW + gap);
+            strip.style.transform = 'translateX(-' + offset + 'px)';
+            var prev = document.getElementById('arrPrev');
+            var next = document.getElementById('arrNext');
+            if (prev) prev.style.opacity = current <= 0 ? '0.3' : '1';
+            if (next) next.style.opacity = current >= max ? '0.3' : '1';
+            var bar = document.getElementById('arrivalsProgressBar');
+            if (bar) { var s = 100/cards.length; bar.style.width=(s*perPage)+'%'; bar.style.left=(s*current)+'%'; }
+        }
+
+        document.getElementById('arrNext').addEventListener('click', function() {
+            var max = Math.max(0, cards.length - getPerPage());
+            if (current < max) { current++; slide(); }
+        });
+        document.getElementById('arrPrev').addEventListener('click', function() {
+            if (current > 0) { current--; slide(); }
+        });
+        window.addEventListener('resize', function() { current = 0; slide(); });
+        // Run after full page load so CSS widths are computed
+        window.addEventListener('load', slide);
+        slide();
+        // Filter buttons
+        document.querySelectorAll('.arrivals-filter').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.arrivals-filter').forEach(function(b) { b.classList.remove('on'); });
+                btn.classList.add('on');
+            });
+        });
+    })();
+
+    // Shop the Set slider
+    (function() {
+        var sets = [
+            {
+                title: 'Material Difference',
+                editorial: 'assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp',
+                products: [
+                    { img: 'assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp', name: 'Inara Top' },
+                    { img: 'assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp', name: 'Mini Emma Bag' },
+                    { img: 'assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp', name: 'Marlene Pump' },
+                    { img: 'assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp', name: 'Auggie Short' }
+                ]
+            },
+            {
+                title: 'Casual Luxury',
+                editorial: 'assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp',
+                products: [
+                    { img: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&q=80', name: 'Linen Jacket' },
+                    { img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&q=80', name: 'Shoulder Bag' },
+                    { img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80', name: 'Sneaker' },
+                    { img: 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=300&q=80', name: 'Wide Trousers' }
+                ]
+            },
+            {
+                title: 'Evening Edit',
+                editorial: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&q=80',
+                products: [
+                    { img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&q=80', name: 'Slip Dress' },
+                    { img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80', name: 'Gold Cuff' },
+                    { img: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&q=80', name: 'Strappy Heel' },
+                    { img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&q=80', name: 'Satin Clutch' }
+                ]
+            }
+        ];
+
+        var current = 0;
+        var content = document.getElementById('setsContent');
+        var titleEl = document.getElementById('setsTitle');
+        var grid = document.getElementById('setsGrid');
+        var editorial = document.getElementById('setsEditorialImg');
+
+        function goTo(index) {
+            var set = sets[index];
+            content.classList.add('fade-out');
+            editorial.style.transition = 'opacity 0.35s ease';
+            editorial.style.opacity = '0';
+            setTimeout(function() {
+                titleEl.innerHTML = set.title;
+                editorial.src = set.editorial;
+                grid.innerHTML = set.products.map(function(p) {
+                    return '<a href="#" class="set-item"><div class="set-item-img"><img src="' + p.img + '" alt="' + p.name + '" loading="lazy"></div><div class="set-item-name">' + p.name + '</div></a>';
+                }).join('');
+                content.classList.remove('fade-out');
+                editorial.style.opacity = '1';
+            }, 350);
+        }
+
+        document.getElementById('setsNext').addEventListener('click', function() {
+            current = (current + 1) % sets.length;
+            goTo(current);
+        });
+        document.getElementById('setsPrev').addEventListener('click', function() {
+            current = (current - 1 + sets.length) % sets.length;
+            goTo(current);
+        });
+    })();
+
+    // ── Shop Our Products scroll ───────────────────────────────
+    (function() {
+        var list = document.getElementById('shopProdList');
+        var prev = document.getElementById('shopPrev');
+        var next = document.getElementById('shopNext');
+        if (!list || !prev || !next) return;
+        var items = Array.from(list.querySelectorAll('.shop-prod-item'));
+        var PER_PAGE = 5;
+        var offset = 0;
+        function show() {
+            items.forEach(function(item, i) {
+                item.style.display = (i >= offset && i < offset + PER_PAGE) ? 'flex' : 'none';
+            });
+            prev.disabled = offset === 0;
+            next.disabled = offset + PER_PAGE >= items.length;
+        }
+        next.addEventListener('click', function() {
+            if (offset + PER_PAGE < items.length) { offset += PER_PAGE; show(); }
+        });
+        prev.addEventListener('click', function() {
+            if (offset > 0) { offset -= PER_PAGE; show(); }
+        });
+        show();
+    })();
+
+
+    // ── Fashion Lookup ─────────────────────────────────────────
+    (function() {
+        var cats = {
+            jeans: {
+                editorial: 'assets/setsi.png',
+                title: 'Light Fashion Wear',
+                products: [
+                    { img: 'assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp', name: 'Auggie Short', price: 'Price QAR 890' },
+                    { img: 'assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp', name: 'Marlene Pump 50', price: 'Price QAR 2,190' },
+                    { img: 'assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp', name: 'Mini Emma Bag', price: 'Price QAR 3,450' },
+                    { img: 'assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp', name: 'Inara Top', price: 'Price QAR 1,290' }
+                ]
+            },
+            shirts: {
+                editorial: 'assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp',
+                title: 'Shirt Style Wear',
+                products: [
+                    { img: 'assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp', name: 'Inara Shirt Top', price: 'Price QAR 1,290' },
+                    { img: 'assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp', name: 'Emma Tote Bag', price: 'Price QAR 3,450' },
+                    { img: 'assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp', name: 'Marlene Pump', price: 'Price QAR 2,190' },
+                    { img: 'assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp', name: 'Olive Short', price: 'Price QAR 890' }
+                ]
+            }
+        };
+        var activeCat = 'jeans';
+        var activeIdx = 0;
+
+        function renderDots() {
+            var products = cats[activeCat].products;
+            var dotsEl = document.getElementById('fashionDots');
+            if (!dotsEl) return;
+            dotsEl.innerHTML = products.map(function(_, i) {
+                return '<span class="fdot ' + (i === activeIdx ? 'active' : '') + '" data-idx="' + i + '"></span>';
+            }).join('');
+            dotsEl.querySelectorAll('.fdot').forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    activeIdx = parseInt(dot.getAttribute('data-idx'));
+                    showProduct();
+                });
+            });
+        }
+
+        function showProduct() {
+            var p = cats[activeCat].products[activeIdx];
+            var img = document.getElementById('fashionProdImg');
+            var name = document.getElementById('fashionProdName');
+            var price = document.getElementById('fashionProdPrice');
+            if (!img) return;
+            img.style.opacity = '0';
+            setTimeout(function() {
+                img.src = p.img;
+                name.textContent = p.name;
+                price.textContent = p.price;
+                img.style.opacity = '1';
+            }, 200);
+            renderDots();
+        }
+
+        function showCat(cat) {
+            activeCat = cat;
+            activeIdx = 0;
+            var data = cats[cat];
+            var editImg = document.getElementById('fashionEditImg');
+            var title = document.getElementById('fashionCatTitle');
+            if (!editImg) return;
+            editImg.style.opacity = '0';
+            setTimeout(function() {
+                editImg.src = data.editorial;
+                editImg.style.opacity = '1';
+            }, 200);
+            title.textContent = data.title;
+            document.querySelectorAll('.fcat-link').forEach(function(l) {
+                l.classList.toggle('active', l.getAttribute('data-cat') === cat);
+            });
+            showProduct();
+        }
+
+        document.querySelectorAll('.fcat-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCat(link.getAttribute('data-cat'));
+            });
+        });
+
+        renderDots();
+    })();
+
+    // ── Fashion Lookup 2 (mirrored) ────────────────────────────
+    (function() {
+        var cats = {
+            tops: {
+                editorial: 'assets/Artboard3-1_P26_R2_ShopTheLook_Desktop_6.9.26.webp',
+                title: 'Dark Fashion Wear',
+                products: [
+                    { img: 'assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp', name: 'Inara Top', price: 'Price QAR 1,290' },
+                    { img: 'assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp', name: 'Auggie Short', price: 'Price QAR 890' },
+                    { img: 'assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp', name: 'Marlene Pump', price: 'Price QAR 2,190' },
+                    { img: 'assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp', name: 'Mini Emma Bag', price: 'Price QAR 3,450' }
+                ]
+            },
+            accessories: {
+                editorial: 'assets/setsi.png',
+                title: 'Accessory Edit',
+                products: [
+                    { img: 'assets/EMMA-TOTE-MINI_RUBY-MULTI_H1041-878-695_A.webp', name: 'Mini Emma Bag', price: 'Price QAR 3,450' },
+                    { img: 'assets/MARLENE-PUMP-50_TAUPE_F2055-803-461_A.webp', name: 'Marlene Pump', price: 'Price QAR 2,190' },
+                    { img: 'assets/INARA-TOP_ICE-GREEN_24814232-499_GHOST.webp', name: 'Inara Top', price: 'Price QAR 1,290' },
+                    { img: 'assets/AUGGIE-SHORT_DARK-OLIVE_3205582-429_GHOST_dd4bd26c-edae-43f5-932d-4e9e8f907fc1.webp', name: 'Auggie Short', price: 'Price QAR 890' }
+                ]
+            }
+        };
+        var activeCat = 'tops';
+        var activeIdx = 0;
+
+        function renderDots2() {
+            var products = cats[activeCat].products;
+            var dotsEl = document.getElementById('fashionDots2');
+            if (!dotsEl) return;
+            dotsEl.innerHTML = products.map(function(_, i) {
+                return '<span class="fdot ' + (i === activeIdx ? 'active' : '') + '" data-idx="' + i + '"></span>';
+            }).join('');
+            dotsEl.querySelectorAll('.fdot').forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    activeIdx = parseInt(dot.getAttribute('data-idx'));
+                    showProduct2();
+                });
+            });
+        }
+
+        function showProduct2() {
+            var p = cats[activeCat].products[activeIdx];
+            var img = document.getElementById('fashionProdImg2');
+            var name = document.getElementById('fashionProdName2');
+            var price = document.getElementById('fashionProdPrice2');
+            if (!img) return;
+            img.style.opacity = '0';
+            setTimeout(function() {
+                img.src = p.img;
+                name.textContent = p.name;
+                price.textContent = p.price;
+                img.style.opacity = '1';
+            }, 200);
+            renderDots2();
+        }
+
+        function showCat2(cat) {
+            activeCat = cat;
+            activeIdx = 0;
+            var data = cats[cat];
+            var editImg = document.getElementById('fashionEditImg2');
+            var title = document.getElementById('fashionCatTitle2');
+            if (!editImg) return;
+            editImg.style.opacity = '0';
+            setTimeout(function() { editImg.src = data.editorial; editImg.style.opacity = '1'; }, 200);
+            title.textContent = data.title;
+            document.querySelectorAll('.fcat-link2').forEach(function(l) {
+                l.classList.toggle('active', l.getAttribute('data-cat') === cat);
+            });
+            showProduct2();
+        }
+
+        document.querySelectorAll('.fcat-link2').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCat2(link.getAttribute('data-cat'));
+            });
+        });
+
+        renderDots2();
+    })();
+
+</script>
+</body>
+</html>

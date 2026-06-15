@@ -371,6 +371,7 @@ input, button { outline-color: var(--blue); }
   height: var(--header-h);
   background: var(--white);
   border-bottom: none;
+  box-shadow: var(--shadow-sm);
   transition: box-shadow var(--mid), background var(--mid), border-color var(--mid);
 }
 .site-header.is-scrolled {
@@ -935,9 +936,9 @@ input, button { outline-color: var(--blue); }
 .category-card::after {
   content: '';
   display: block;
-  padding-bottom: 135%;
+  padding-bottom: 86%;
 }
-.category-card--featured::after { padding-bottom: 90%; }
+.category-card--featured::after { padding-bottom: 66%; }
 .category-card--featured { grid-column: span 2; }
 
 .cat-img {
